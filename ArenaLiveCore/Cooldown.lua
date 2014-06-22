@@ -47,11 +47,12 @@ local function Update(self)
 		return;
 	end
 	
-	if ( self.duration > 0 and self.showText ) then
+	if ( self.duration and self.duration > 0 and self.showText ) then
 		self.text:Show();
 		self.text:SetText(Cooldown:FormatText(self.duration));
 	else
 		self.text:Hide();
+		self:Hide()
 	end
 
 end
@@ -237,7 +238,7 @@ function Cooldown:FormatText(cooldownTime)
 		if (cooldownTime < 10 and math.floor(cooldownTime) > 0 ) then
 			decimal = (math.floor(cooldownTime*10));
 			cooldownTime = string.sub(decimal, 1, -2);
-			cooldownTime = cooldownTime..DECIMAL_SEPERATOR;
+			cooldownTime = cooldownTime..".";
 			cooldownTime = cooldownTime..string.sub(decimal, -1);
 			return cooldownTime;
 		end

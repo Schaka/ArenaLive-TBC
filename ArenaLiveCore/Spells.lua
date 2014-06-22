@@ -4,19 +4,11 @@ ArenaLiveCore.spellDB = {
 					-- First Number is the SpellID, 2nd one is the CD and 3rd is the shared CD with the PvP-Trinket. Use 0 if they don't have a shared CD.
 					Human = { 59752, 120, 120 },
 					Dwarf = { 20594, 120, 0 },
-					NightElf = { 58984, 120, 0 },
-					Gnome = { 20589, 90, 0 },
-					["Draenei"] = { -- For some reason, as a Draenei every class has it's own "Gift of the Naaru" spell. So we have to add them all into the table
-						WARRIOR =  { 28880, 180, 0 },
-						PALADIN = { 59542, 180, 0 },
-						HUNTER = { 59543, 180, 0 },
-						PRIEST = { 59544, 180, 0 },
-						DEATHKNIGHT = { 59545, 180, 0 },
-						SHAMAN = { 59547, 180, 0 },
-						MAGE = { 59548, 180, 0 },
-						MONK = { 121093, 180, 0 } -- Need to test this as soon as MoP is out.
+					["NightElf"] = {
+						PRIEST = { 2651, 180, 0}
 					},
-					Worgen = { 68992, 120, 0 },
+					Gnome = { 20589, 90, 0 },
+					Draenei = { 28880, 180, 0},
 					["Orc"] = { -- Since Orcs also have class-specific racials, we need to add all of them
 						WARRIOR = { 20572, 120, 0 },
 						HUNTER = { 20572, 120, 0 },
@@ -27,210 +19,125 @@ ArenaLiveCore.spellDB = {
 						DEATHKNIGHT = { 20572, 120, 0 },
 						MONK = { 33697, 120, 0 } -- I guess Monks will get the same racial version as Shamans, since it increases AP+Spell Power. Test this as soon as MoP is out
 					},
-					Scourge = { 7744, 120, 30 },
+					Scourge = { 7744, 120, 0 },
 					Tauren = { 20549, 120, 0 },
 					Troll = { 26297, 180, 0 },
 					["BloodElf"] = {
-						WARRIOR = { 69179, 120, 0},
 						PALADIN = { 28730, 120, 0 },
-						HUNTER = { 80483, 120, 0},
+						HUNTER = { 28730, 120, 0},
 						ROGUE = { 25046, 120, 0 },
 						PRIEST = { 28730, 120, 0 },
 						MAGE = { 28730, 120, 0 },
 						WARLOCK = { 28730, 120, 0 },
-						DEATHKNIGHT = { 50613, 120, 0 },
-						MONK = { 129597, 120, 0 }
 					},
-					Goblin = { 69070, 120, 0 },
-					Pandaren = { 107079, 120, 0 }
 			},
 			
 			["portraitOverlay"] = { -- This table is used to track those spells, that are shown on the Class Portrait's position.
 				-- The order is [spellID] = Priority-Type.
 
-				-- Death Knight
-				[48707] = "defCD",			-- Anti-Magic Shell
-				[51271] = "offCD", 			-- Pillar of Frost
-				[49016] = "offCD",			-- Unholy Frenzy
-				[91800] = "stun",			-- Gnaw (Petstun)
-				[91797] = "stun", 			-- Monstrous Blow (Petstun)
-				[115001] = "stun",			-- Remorseless Winter (stun)
-				[108194] = "stun",			-- Asphyxiate
-				[47476] = "silence",		-- Strangulate
-				[96294] = "root",			-- Chains of Ice (root)
-				[91807] = "root", 			-- Pet Leap Root
-				
+							
 				-- Druid
 				[33786] = "defCD",			-- Cyclone (Made that one a def CD, because the enemy is immune to everything during cyclone)
-				[110617] = "defCD",			-- Deterrence (Symbiosis)
 				[102795] = "stun",			-- Bear Hug
 				[22570] = "stun",			-- Maim
-				[5211] = "stun",			-- Mighty Bash
-				[9005] = "stun",			-- Pounce (stun)
-				[102546] = "stun",			-- Pounce (stun, maybe the nonferalversion or something)
-				[78675] = "silence",		-- Solar Beam
-				[114238] = "silence",		-- Fae Silence (Glyph of Fae Silence)
-				[2637] = "crowdControl",	-- Hibernate
-				[99] = "crowdControl",		-- Disorienting Roar
-				[113056] = "crowdControl",	-- Intimidating Roar (cower)
-				[113004] = "crowdControl",	-- Intimidating Roar (flee)
+				[8983] = "stun",			-- Bash
+				[27006] = "stun",			-- Pounce (stun)
+				[18658] = "crowdControl",	-- Hibernate R3
 				[339] = "root",				-- Entangling roots
-				[19975] = "root",			-- Entangling roots (Nature's Grasp)
-				[16979] = "root",			-- Feral Charge (root)
-				[102359] = "root",			-- Mass Entanglement
+				[9853] = "root",			-- Entangling roots max rank
+				[45334] = "root",			-- Feral Charge (root)
+				[16689] = "defCD", 			-- Nature's Grasp
+				[29166] = "usefulBuffs", 	-- Innervate
 
 				-- Hunter
 				[5384] = "defCD",			-- Feign Death
 				[19263] = "defCD",			-- Deterrence
-				[117526] = "stun",			-- Binding Shot
 				[19577] = "stun",			-- Intimidation (stun)			
 				[90337] = "stun",			-- Bad Manner (Monkey Pet)
-				[126246] = "stun",			-- Lullaby (Crane Pet)
-				[126423] = "stun",			-- Petrifying Gaze (Basilisk Pet)
-				[126355] = "stun",			-- Paralyzing Quill (Porcupine Pet)
-				[56626] = "stun",			-- Sting (Wasp Pet)
-				[50519] = "stun",			-- Sonic Blast (Bat Pet)
-				[96201] = "stun",			-- Web Wrap (Spider-Pet Stun)
 				[34490] = "silence",		-- Silencing Shot
-				[3355] = "crowdControl",	-- Freezing Trap
+				[3355] = "crowdControl",	-- Freezing Trap R1
+				[14309] = "crowdControl",	-- Freezing Trap R3
 				[19503] = "crowdControl",	-- Scatter Shot
 				[19386] = "crowdControl",	-- Wyvern Sting
-				[1513] = "crowdControl",	-- Scare Beast
-				[50541] = "disarm",			-- Clench (Scorpid Pet)
-				[91644] = "disarm",			-- Snatch (Bird of Prey Pet)
-				[53148] = "root",			-- Charge (Tenacity Pet)
-				[64803] = "root",			-- Entrapment (trap-roots)
-				[136634] = "root",			-- Narrow Escape
-				[50245] = "root";			-- Pin (Crab Pet)
-				[90327] = "root",			-- Lock Jaw (Dog Pet)
-				[4167] = "root",			-- Web (Spider Pet)
-				[54706] = "root",			-- Venom Web Spray (Silithid Pet)
+				[1513] = "crowdControl",	-- Scare Beast R1
+				[14327] = "crowdControl",	-- Scare Beast R3
+				[19185] = "root",			-- Entrapment (trap-roots)
+				[34692] = "usefulBuffs",	-- The Beast Within (Hunter)
 				
 				-- Mage
 				[45438] = "defCD",			-- Ice Block
 				[12472] = "offCD",			-- Icy Veins
-				[102051] = "stun",			-- Frost Jaw
-				[44572] = "stun",			-- Deep Freeze
-				[118271] = "stun";			-- Combustion Impact
-				[55021] = "silence",		-- Counterspell silence
-				[118] = "crowdControl",		-- Standard Polymorph
-				[61305] = "crowdControl",	-- Polymorph Cat
+				[18469] = "silence",		-- Counterspell silence
+				[118] = "crowdControl",		-- Standard Polymorph R1
 				[28272] = "crowdControl",	-- Polymorph Pig
-				[61721] = "crowdControl",	-- Polymorph Rabbit
-				[61780] = "crowdControl",	-- Polymorph Turkey (woot?!)
 				[28271] = "crowdControl",	-- Polymorph Turtle
-				[82691] = "crowdControl",	-- Ring of Frost
-				[31661] = "crowdControl",	-- Dragon's Breath
-				[122] = "root",				-- Frost Nova
+				[33043] = "crowdControl",	-- Dragon's Breath
+				[122] = "root",				-- Frost Nova R1
 				[33395] = "root",			-- Freeze (Pet Nova)
-				[111340] = "root",			-- Ice Ward Root
-				[110909] = "usefulBuffs",	-- Alter Time
 
-				-- Monk
-				[120086] = "stun",			-- Fists of Fury
-				[122242] = "stun",			-- Clash (stun)
-				[126451] = "stun",			-- Clash (stun)
-				[119392] = "stun",			-- Charging Ox Wave
-				[119381] = "stun",			-- Leg Sweep
-				[116709] = "silence",		-- Spear Hand Strike
-				[137460] = "silence",		-- Silence (Ring of Peace)
-				[115078] = "crowdControl",	-- Paralysis
-				[123407] = "crowdControl",	-- Glyph of Breath of Fire
-				[117368] = "disarm",		-- Grapple Weapon
-				[137461] = "disarm",		-- Disarm (Ring of Peace)
-				[116706] = "root",			-- Disable (root)
-				[123393] = "root",			-- Spinning Fire Blossom
 
 				-- Paladin
-				[642] = "defCD",			-- Divine Shield
+				[1020] = "defCD",			-- Divine Shield
 				[31884] = "offCD",			-- Avenging Wrath
-				[105593] = "stun",			-- Fist of Justice
-				[853] = "stun",				-- Hammer of Justice
+				[10308] = "stun",			-- Hammer of Justice
 				[119072] = "stun",			-- Holy Wrath
 				[31935] = "silence",		-- Avenger's Shield
-				[145067] = "crowdControl",	-- Turn Evil
-				[105421] = "crowdControl",	-- Blinding Light
+				[10326] = "crowdControl",	-- Turn Evil
 				[20066] = "crowdControl",	-- Repentance
+				[10278] = "defCD", 			-- Blessing of Protection
+				[1044] = "usefulBuffs", 	-- Blessing of Freedom
+				[6940] = "usefulBuffs", 	-- Blessing of Sacrifice
 				
 				-- Priest
-				[113506] = "defCD", 		-- Cyclone (Symbiosis) (Made that one a def CD, because the enemy is immune to everything during cyclone)
 				[33206] = "defCD",			-- Pain Suppression
-				[47788] = "defCD",			-- Guardian Spirit
-				[47585] = "defCD",			-- Dispersion
 				[10060] = "offCD",			-- Power Infusion
-				[64044] = "stun",			-- Psychic Horror
 				[15487] = "silence",		-- Silence
-				[87204] = "crowdControl",	-- Sin and Punishment(Vampiric Touch dispel fear)
 				[8122] = "crowdControl",	-- Psychic Scream
-				[113792] = "crowdControl",	-- Psychic Terror (Psyfiend)
-				[605] = "crowdControl",		-- Dominate Mind
-				[88625] = "crowdControl",	-- Holy Word: Chastise
-				[9484] = "crowdControl",	-- Shackle Undead
-				[114404] = "root",			-- Void Tendrils
-				[87194] = "root",			-- Glyph of Mindblast
+				[10912] = "crowdControl",	-- Mind Control
 				[6346] = "usefulBuffs",		-- Fear Ward
-				[34914] = "usefulDebuffs",	-- Vampiric Touch
 				
 				-- Rogue	
-				[5277] = "defCD",			-- Evasion
+				[26669] = "defCD",			-- Evasion
 				[31224] = "defCD",			-- Cloak of Shadows
-				[121471] = "offCD",			-- Shadow Blades
-				[51713] = "offCD",			-- Shadow Dance
-				[408] = "stun", 			-- Kidney Shot
+				[8643] = "stun", 			-- Kidney Shot
 				[1833] = "stun",			-- Cheap Shot
-				-- [76577] = 90,			-- Smokebomb
-				[113953] = "stun",			-- Paralysis (Paralitic Poison Stun)
 				[1330] = "silence",			-- Garrote - Silence
 				[2094] = "crowdControl", 	-- Blind
 				[1776] = "crowdControl", 	-- Gouge
-				[6770] = "crowdControl", 	-- Sap
-				[51722] = "disarm", 		-- Dismantle
-				[115197] = "root", 			-- Partial Paralysis (Paralitic Poison Shiv)
+				[11297] = "crowdControl", 	-- Sap
 				
 				-- Shaman
 				[16166] = "offCD",			-- Elemental Mastery
-				[118905] = "stun",			-- Static Charge
-				[118345] = "stun",			-- Pulverize (Primal Earth Elemental)
-				[77505] = "stun",			-- Earthquake Stun
-				[51514] = "crowdControl",	-- Hex
-				[76780] = "crowdControl",	-- Bind Elemental
-				[63685] = "root",			-- Frost Shock (including Frozen Power)
-				[64695] = "root",			-- Earthgrab Totem
+				[32182] = "usefulBuffs", 	-- Heroism
+				[2825] = "usefulBuffs", 	-- Bloodlust
 				
 				-- Warlock
 				[710] = "defCD",			-- Banish (It is marked as def CD for the same reason as Cyclone)
-				[113858] = "offCD",			-- Dark Soul: Instability
-				[113861] = "offCD",			-- Dark Soul: Knowledge
-				[113860] = "offCD",			-- Dark Soul: Misery
-				[6789] = "stun",			-- Mortal Coil
-				[30283] = "stun",			-- Shadowfury
-				[89766] = "stun",			-- Axe Toss	(Pet-stun)
-				[22703] = "stun",			-- Infernal Awakening
-				[24259] = "silence",		-- Spell lock (Pet-silence)
-				[115782] = "silence",		-- Optical Blast (Pet-silence)
-				[137143] = "crowdControl",	-- Blood Horror
-				[5484] = "crowdControl",	-- Howl of Terror
+				[27223] = "stun",			-- Mortal Coil
+				[30414] = "stun",			-- Shadowfury
+				[19647] = "silence",		-- Spell lock (Pet-silence)
+				[17928] = "crowdControl",	-- Howl of Terror
 				[118699] = "crowdControl",	-- Fear
 				[115268] = "crowdControl",	-- Mesmerize (Pet-Charm)
 				[6358] = "crowdControl",	-- Seduce (Pet-Charm)
-				[30108] = "usefulDebuffs",	-- Unstable Affliction		
+				[30405] = "usefulDebuffs",	-- Unstable Affliction		
 				
 				-- Warrior
 				[871] = "defCD",			-- Shield Wall
 				[1719] = "offCD",			-- Recklessness
 				[7922] = "stun",			-- Charge Stun
-				[132168] = "stun",			-- Shockwave
-				[118000] = "stun",			-- Dragon Roar
-				[132169] = "stun",			-- Storm Bolt
-				[58357] = "silence",		-- Heroic Throw silence ?
 				[5246] = "crowdControl",	-- Intimidating Shout
-				[20511] = "crowdControl", 	-- Intimidating Shout
-				[95199] = "crowdControl",	-- Intimidating Shout
 				[676] = "disarm",			-- Disarm
-				[107566] = "root",			-- Staggering Shout
-				[105771] = "root",			-- Warbringer
 				[23920] = "usefulBuffs",	-- Spell Reflection
-				[114028] = "usefulBuffs",	-- Mass Spell Reflection
+				[12292] = "usefulBuffs", 	-- Death Wish
+				[3411] = "usefulBuffs", 	-- Intervene
+				[25274] = "crowdControl", 	-- Intercept Stun
+				[5530] = "crowdControl", 	-- Mace Stun Effect
+				[12292] = "usefulBuffs", 	-- Death Wish
+				
+				-- Racials
+				[20549] = "crowdControl", 	-- War Stomp
+				[20594] = "usefulBuffs", 	-- Stoneform
 			},
 			
 			["filteredSpells"] = { --[[This list blocks spells that cause bugs in the casthistory.]]--

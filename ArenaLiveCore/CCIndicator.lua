@@ -26,6 +26,15 @@ local MAX_DEBUFFS = 40;
 -- Create a table to store the currently highest aura for every unitID.
 local ccByUnitID = {};
 
+-- localized spellname table
+local locSpells = {};
+for k,v in pairs(ArenaLiveCore.spellDB["portraitOverlay"]) do
+	local name = GetSpellInfo(k)
+	if name then
+		locSpells[name] = v
+	end
+end
+
 -- *** FRAME FUNCTIONS ***
 local function Update (self)
 	local unit = self.unitFrame.unit;
@@ -33,13 +42,15 @@ local function Update (self)
 	
 	CCIndicator:QueryAuras(unit);
 	
-	if ( ccByUnitID[unit] and ccByUnitID[unit]["spellID"] ) then
+	if ( ccByUnitID[unit] and ccByUnitID[unit]["spellName"] ) then
 		self.active = true;
 		self.texture:SetTexture(ccByUnitID[unit]["texture"]);
-		startTime = ccByUnitID[unit]["expires"] - ccByUnitID[unit]["duration"];
-		duration = ccByUnitID[unit]["duration"];
-		self.cooldown:Set(startTime, duration);
-	elseif ( ( not ccByUnitID[unit] or not ccByUnitID[unit]["spellID"] ) and self.active == true )then
+		if ccByUnitID[unit]["duration"] then
+			startTime = ccByUnitID[unit]["duration"] - ccByUnitID[unit]["expires"];
+			duration = ccByUnitID[unit]["duration"];
+			self.cooldown:Set(GetTime() - startTime, duration);
+		end
+	elseif ( ( not ccByUnitID[unit] or not ccByUnitID[unit]["spellName"] ) and self.active == true )then
 		self.active = nil;
 		self:Reset();
 	end
@@ -76,23 +87,23 @@ function CCIndicator:QueryAuras (unit)
 
 	-- Only query auras if we have a unit frame that shows this unit.
 	if ( UnitFrame.UnitIDTable[unit] ) then
-		local priority, name, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID
+		local priority, spellName, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID
 		local matchSpellID, matchAura, matchType, matchDuration, matchExpires, matchTexture, matchPriority;
 		
 		-- Check Buffs first.
 		for i=1, MAX_BUFFS do
-			name, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID = UnitBuff(unit, i);
+			spellName, rank, icon, count, duration, expires = UnitBuff(unit, i);
 			
 			if ( icon ) then					
 				
-				if ( ArenaLiveCore.spellDB["portraitOverlay"][spellID] ) then
+				if ( locSpells[spellName] ) then
 					-- Get the priority of the spell.
-					local dbKey =  "CCPriority/"..ArenaLiveCore.spellDB["portraitOverlay"][spellID];
+					local dbKey =  "CCPriority/"..locSpells[spellName];
 					priority = ArenaLiveCore:GetDBEntry(addonName, dbKey);					
 					
 					if ( priority > 0 and ( not matchSpellID or ( (matchPriority < priority ) or ( matchPriority == priority and matchExpires < expires ) ) ) ) then
 						-- We've found the first matching spell or there was already a matching spell with higher priority / later expiration time.
-						matchSpellID = spellID;
+						matchSpellID = spellName;
 						matchAura = i;
 						matchType = "buff";
 						matchDuration = duration;
@@ -110,18 +121,18 @@ function CCIndicator:QueryAuras (unit)
 		
 		-- Then ceck Debuffs
 		for i=1, MAX_DEBUFFS do
-			name, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID = UnitDebuff(unit, i);
+			spellName, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID = UnitDebuff(unit, i);
 			
 			if ( icon ) then
 						
-				if ( ArenaLiveCore.spellDB["portraitOverlay"][spellID] ) then
+				if ( locSpells[spellName] ) then
 					-- Get the priority of the spell.
-					local dbKey =  "CCPriority/"..ArenaLiveCore.spellDB["portraitOverlay"][spellID];
+					local dbKey =  "CCPriority/"..locSpells[spellName];
 					priority = ArenaLiveCore:GetDBEntry(addonName, dbKey);							
 					
 					if ( priority > 0 and ( not matchSpellID or ( (matchPriority < priority ) or ( matchPriority == priority and matchExpires < expires ) ) ) ) then
 						-- We've found the first matching spell or there was already a matching spell with higher priority / later expiration time.
-						matchSpellID = spellID;
+						matchSpellID = spellName;
 						matchAura = i;
 						matchType = "buff";
 						matchDuration = duration;
@@ -142,7 +153,7 @@ function CCIndicator:QueryAuras (unit)
 				ccByUnitID[unit] = {};
 			end
 			
-			ccByUnitID[unit]["spellID"] = matchSpellID;
+			ccByUnitID[unit]["spellName"] = matchSpellID;
 			ccByUnitID[unit]["aura"] = matchAura;
 			ccByUnitID[unit]["type"] = matchType;
 			ccByUnitID[unit]["duration"] = matchDuration;
@@ -151,9 +162,9 @@ function CCIndicator:QueryAuras (unit)
 			ccByUnitID[unit]["priority"] = matchPriority;
 				
 		else
-			if ( ccByUnitID[unit] and ccByUnitID[unit]["spellID"] ) then
+			if ( ccByUnitID[unit] and ccByUnitID[unit]["spellName"] ) then
 				-- Reset the current entry for this unit, because it has run out.
-				ccByUnitID[unit]["spellID"] = nil;
+				ccByUnitID[unit]["spellName"] = nil;
 				ccByUnitID[unit]["aura"] = nil;
 				ccByUnitID[unit]["type"] = nil;
 				ccByUnitID[unit]["duration"] = nil;
