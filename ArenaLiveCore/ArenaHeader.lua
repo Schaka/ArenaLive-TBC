@@ -219,9 +219,9 @@ local function UpdateNumOpponents(self)
 			return;
 		end
 		
-		local numOpponents = GetNumArenaOpponentSpecs() or 0;
+		local numOpponents =  0;
 		if ( numOpponents == 0 ) then
-			numOpponents = GetNumArenaOpponents() or 0;
+			numOpponents = 0;
 		end
 				
 		self:SetAttribute("numopponents", numOpponents);

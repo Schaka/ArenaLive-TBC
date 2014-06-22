@@ -214,7 +214,7 @@ local function Update (self)
 				end
 				
 				-- Set the cooldown duration
-				if ( duration > 0 ) then
+				if ( duration and duration > 0 ) then
 					if ( frame.cooldown ) then
 						local startTime = duration - expires;
 						frame.cooldown:Set(GetTime()-startTime, duration);
