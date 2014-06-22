@@ -1,0 +1,42 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Script File="CastHistory.lua" />
+	
+	<Button name="ArenaLive_CastHistoryIconTemplate" hidden="true" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentTexture" file="Interface\Icons\INV_Misc_QuestionMark" />
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveCore\textures\castHistoryBorder" hidden="true">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-1" y="1" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="1" top="0" bottom="1"/>
+				</Texture>
+				<Texture name="$parentLockOutTexture" file="Interface\Raidframe\ReadyCheck-NotReady" hidden="true" />
+			</Layer>
+		</Layers>
+		<Animations>
+			<AnimationGroup name="$parentCasting" looping="REPEAT">
+				<Alpha duration="0.5" smoothing="OUT" change="1" order="1" />
+				<Alpha duration="0.5" smoothing="IN" change="-1" order="2" />
+			</AnimationGroup>
+			<AnimationGroup name="$parentMove" looping="NONE">
+				<Translation name="$parentTranslation" duration="0.5" smoothing="OUT" xOffest="0" yOffset="0" order="1" />
+			</AnimationGroup>
+			<AnimationGroup name="$parentFadeIn" looping="NONE">
+				<Alpha duration="0.5" smoothing="IN" change="1" order="1" />
+			</AnimationGroup>
+			<AnimationGroup name="$parentFadeOut" looping="NONE">
+				<Alpha duration="0.5" smoothing="IN" change="-1" order="1" />
+			</AnimationGroup>
+		</Animations>
+	</Button>
+
+</Ui>

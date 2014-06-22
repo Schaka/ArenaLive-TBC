@@ -1,0 +1,26 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Script File="FrameMover.lua" />
+	
+	<Button name="ArenaLive_FrameMoverTemplate" frameStrata="HIGH" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="200" y="14" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER" />
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground">
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Texture>
+				<FontString name="$parentText" inherits="ArenaLiveFont_StatusBarTextSmall">
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Button>
+</Ui>

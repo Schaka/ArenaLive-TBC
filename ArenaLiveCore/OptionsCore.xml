@@ -1,0 +1,339 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Slider name="ArenaLive_OptionsSliderTemplate" orientation="HORIZONTAL" enableMouse="true" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="0" top="-10" bottom="-10"/>
+		</HitRectInsets>
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP"/>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMin" inherits="GameFontHighlightSmall">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="-4" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCurrent" inherits="GameFontHighlightSmall">
+					<Anchors>
+						<Anchor point="TOP" relativePoint="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="2" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentMax" inherits="GameFontHighlightSmall">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="4" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<ThumbTexture name="$parentThumb" file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+		</ThumbTexture>
+	</Slider>
+
+	<EditBox name="ArenaLive_OptionsEditBoxTemplate" font="ChatFontNormal" autofocus="false" virtual="true">
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="10"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="10"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>	
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<TextInsets left="6" />
+		<Scripts>
+			<OnEnterPressed>
+				self:ClearFocus();
+			</OnEnterPressed>
+			<OnEscapePressed>
+				self:ClearFocus();
+			</OnEscapePressed>
+		</Scripts>
+	</EditBox>	
+	
+	<EditBox name="ArenaLive_OptionsEditBoxSmallTemplate" font="ChatFontNormal" autofocus="false" virtual="true">
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="10"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="10"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>	
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="LEFT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="5" y="0" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<TextInsets left="6" />
+		<Scripts>
+			<OnEnterPressed>
+				self:ClearFocus();
+			</OnEnterPressed>
+			<OnEscapePressed>
+				self:ClearFocus();
+			</OnEscapePressed>
+		</Scripts>
+	</EditBox>
+	
+	<Button name="ArenaLive_OptionsDropDownMenuTemplate" inherits="UIDropDownMenuTemplate" virtual="true">
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentTitle" inherits="GameFontNormalSmall" >
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="25" y="10" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>		
+		</Layers>
+	</Button>
+	
+	<Frame name="ArenaLiveOptions">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge" text="ArenaLive">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parent_Core">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-15"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" />
+				</Anchors>
+				<Frames>
+					<CheckButton name="$parentLockFrames" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="5" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentShowCooldownText" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentLockFrames" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Frame name="$parentCCIndicatorOptions">
+						<Size>
+							<AbsDimension x="200" y="200"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentShowCooldownText" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="2" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<FontString name="$parentTitle" inherits="GameFontNormal">
+									<Anchors>
+										<Anchor point="TOPLEFT" />
+									</Anchors>
+								</FontString>
+								<FontString name="$parentDescription" inherits="GameFontHighlightSmall">
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="0" y="-5" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Slider name="$parent_DefCDSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentDescription" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="15" y="-20" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_OffCDSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_DefCDSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_UsefulBuffSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_OffCDSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_UsefulDebuffSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_UsefulBuffSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_StunSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_DefCDSlider" relativePoint="TOPRIGHT">
+										<Offset>
+											<AbsDimension x="25" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_SilenceSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_StunSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_CrowdControlSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_SilenceSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_RootSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_CrowdControlSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+							<Slider name="$parent_DisarmSlider" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="100" valuestep="10">
+								<Size>
+									<AbsDimension x="150" y="17" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parent_RootSlider" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-30" />
+										</Offset>
+									</Anchor>
+								</Anchors>			
+							</Slider>
+						</Frames>
+					</Frame>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	
+	<Script File="OptionsCore.lua" />
+</Ui>

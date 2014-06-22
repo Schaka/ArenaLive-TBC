@@ -1,0 +1,8 @@
+## Interface: 50400
+## Title: ArenaLive [Core]
+## Notes: Core functions for addons that are based on the ArenaLive framework.
+## Author: Vadrak
+## Version: 2.0
+## SavedVariables: ArenaLive_SavedVariables
+
+ArenaLiveCore.xml

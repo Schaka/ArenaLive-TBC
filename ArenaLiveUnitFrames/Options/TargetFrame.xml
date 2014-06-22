@@ -1,0 +1,240 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Frame name="ALUF_TargetFrame_Options" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+				<Frames>
+			<CheckButton name="$parentIsEnabled" inherits="OptionsCheckButtonTemplate" checked="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="$parentPortraitType" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="100" y="-10" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentIcon1" inherits="ArenaLive_OptionsDropDownMenuTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentIsEnabled" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-20" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+			</Button>
+			<Button name="$parentIcon2" inherits="ArenaLive_OptionsDropDownMenuTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentIcon1" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="125" y="0" />
+						</Offset>
+					</Anchor>
+				</Anchors>						
+			</Button>
+			<Button name="$parentHealthBarColour" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentIcon1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+			</Button>							
+			<EditBox name="$parentHealthBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
+				<Size>
+					<AbsDimension x="220" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentHealthBarColour" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="125" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</EditBox>
+			<Button name="$parentNameColour" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentHealthBarColour" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-5" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+			</Button>
+			<EditBox name="$parentPowerBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
+				<Size>
+					<AbsDimension x="220" y="25" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentNameColour" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="125" y="-4" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</EditBox>
+			<Slider name="$parentFrameScale" inherits="ArenaLive_OptionsSliderTemplate" minvalue="10" maxvalue="200" valuestep="5">
+				<Size>
+					<AbsDimension x="200" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentNameColour" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+			<Frame>
+				<Size>
+					<AbsDimension x="100" y="100" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentFrameScale" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="5" y="-20" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentCastBarTitle" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeTo="$parentFrameScale" relativePoint="BOTTOMLEFT">
+									<Offset>
+										<AbsDimension y="-20" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+						<FontString name="$parentAuraTitle" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension y="-30" />
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<Button name="$parentCastBarPosition" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT"  relativeTo="$parentCastBarTitle" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension y="0" x= "50" />
+								</Offset>
+							</Anchor>
+						</Anchors>							
+					</Button>
+					<CheckButton name="$parentShowCastBar" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentCastBarPosition" relativePoint="TOPRIGHT" >
+								<Offset>
+									<AbsDimension x="125" y="-2" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentShowAuras" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentAuraTitle" relativePoint="BOTTOMLEFT" >
+								<Offset>
+									<AbsDimension x="-25" y="-5" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentRTLAuras" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentShowAurasText" relativePoint="TOPRIGHT" >
+								<Offset>
+									<AbsDimension x="0" y="6" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Button name="$parentAuraPosition" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT"  relativeTo="$parentShowAuras" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="-5" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>							
+					</Button>
+					<Slider name="$parentNormalAuraIconSize" inherits="ArenaLive_OptionsSliderTemplate" minvalue="5" maxvalue="50" valuestep="1">
+						<Size>
+							<AbsDimension x="64" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentAuraPosition" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="15" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Slider name="$parentLargeAuraIconSize" inherits="ArenaLive_OptionsSliderTemplate" minvalue="5" maxvalue="50" valuestep="1">
+						<Size>
+							<AbsDimension x="64" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentNormalAuraIconSize" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+					<Slider name="$parentMaxShownBuffs" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="40" valuestep="1">
+						<Size>
+							<AbsDimension x="64" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentLargeAuraIconSize" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>	
+					<Slider name="$parentMaxShownDebuffs" inherits="ArenaLive_OptionsSliderTemplate" minvalue="0" maxvalue="40" valuestep="1">
+						<Size>
+							<AbsDimension x="64" y="17" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentMaxShownBuffs" relativePoint="TOPRIGHT">
+								<Offset>
+									<AbsDimension x="30" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Slider>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>

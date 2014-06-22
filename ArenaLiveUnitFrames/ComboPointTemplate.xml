@@ -1,0 +1,92 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Frame name="ALUF_ComboPointTemplate" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="8" y="8" />
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentTexture" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints">
+					<TexCoords left="0.5625" right="0.8125" top="0.296875" bottom="0.421875"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints" alphaMode="ADD">
+					<Size>
+						<AbsDimension x="16" y="16" />
+					</Size>
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+					<TexCoords left="0.4375" right="0.9375" top="0" bottom="0.25"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Animations>
+			<AnimationGroup name="$parentFadeIn" looping="NONE">
+				<Alpha duration="0.5" smoothing="IN" change="1" order="1" />
+			</AnimationGroup>
+		</Animations>
+	</Frame>
+	
+	<Frame name="ALUF_ComboPointFrameTemplate" frameStrata="HIGH" hidden="true" virtual="true">
+		<Size>
+			<AbsDimension x="12" y="60" />
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints">
+					<TexCoords left="0" right="0.375" top="0.03125" bottom="0.96875"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="$parentComboPoint1" inherits="ALUF_ComboPointTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentComboPoint2" inherits="ALUF_ComboPointTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentComboPoint3" inherits="ALUF_ComboPointTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-26" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentComboPoint4" inherits="ALUF_ComboPointTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-38" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentComboPoint5" inherits="ALUF_ComboPointTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="-50" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+</Ui>

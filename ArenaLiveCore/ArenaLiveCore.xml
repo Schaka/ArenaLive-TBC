@@ -1,0 +1,58 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	
+	<Include File="Fonts.xml" />
+	<Script File="localisation.lua" />
+	<Script File="localisationdeDE.lua" />
+	<Script File="localisationkoKR.lua" />
+	<Script File="localisationruRU.lua" />
+	<Script File="localisationzhCN.lua" />
+	
+	
+	<Frame name="ArenaLiveCore" setAllPoints="true" parent="UIParent">
+	</Frame>
+	
+	<!-- Load SpellDB -->
+	<Script File="Spells.lua" />
+
+	<!-- Load Constants -->
+	<Script File="Constants.lua" />	
+	
+	<!-- Load cores -->
+	<Script File="ArenaLiveCore.lua" />
+	<Script File="LocalisationCore.lua" />
+	<Script File="DatabaseCore.lua" />
+	<Include File="OptionsCore.xml" />
+	<Script File="EventCore.lua" />
+	
+	<!-- Load handlers -->
+	<Script File="ImportExport.lua" />
+	<Script File="FrameHider.lua" />
+	<Script File="UnitFrame.lua" />
+	<Script File="ArenaHeader.lua" />
+	<Script File="PartyHeader.lua" />
+	<Include File="FrameMover.xml" />
+	<Script File="ProfileMenu.lua" />
+	<Include File="Cooldown.xml" />
+	<Script File="NameText.lua" />
+	<Script File="LevelText.lua" />
+	<Script File="LeaderIcon.lua" />
+	<Script File="MasterLooterIcon.lua" />
+	<Script File="PvPIcon.lua" />
+	<Script File="RaidIcon.lua" />
+	<Script File="StatusIcon.lua" />
+	<Script File="ReadyCheck.lua" />
+	<Script File="TargetIndicator.lua" />
+	<Script File="StatusBarText.lua" />
+	<Script File="ComboPoints.lua" />
+	<Script File="HealthBar.lua" />
+	<Script File="PowerBar.lua" />
+	<Include File="Portrait.xml" />
+	<Include File="Icon.xml" />
+	<Include File="CCIndicator.xml" />
+	<Script File="CastBar.lua" />
+	<Include File="Aura.xml" />
+	<Include File="DRTracker.xml" />
+
+</Ui>

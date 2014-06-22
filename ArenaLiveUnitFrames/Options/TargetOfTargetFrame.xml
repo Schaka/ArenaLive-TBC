@@ -1,0 +1,87 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Frame name="ALUF_TargetOfTargetFrame_Options" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton name="$parentIsEnabled" inherits="OptionsCheckButtonTemplate" checked="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="$parentReverseFillStatusBars" inherits="OptionsCheckButtonTemplate" checked="false">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabledText" relativePoint="TOPRIGHT" >
+						<Offset>
+							<AbsDimension x="10" y="6" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</CheckButton>
+			<Button name="$parentResetPositionButton" inherits="OptionsButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentReverseFillStatusBarsText" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="10" y="5"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentPortraitType" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-15" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentHealthBarColour" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentPortraitType" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+			</Button>							
+			<Button name="$parentNameColour" inherits="ArenaLive_OptionsDropDownMenuTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT"  relativeTo="$parentHealthBarColour" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>							
+			</Button>
+			<Slider name="$parentFrameScale" inherits="ArenaLive_OptionsSliderTemplate" minvalue="10" maxvalue="200" valuestep="5">
+				<Size>
+					<AbsDimension x="200" y="17" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentNameColour" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-15" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Slider>
+		</Frames>
+	</Frame>
+</Ui>

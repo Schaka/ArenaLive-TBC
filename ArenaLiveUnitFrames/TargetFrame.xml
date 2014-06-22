@@ -1,0 +1,329 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Button name="ALUF_TargetFrameTemplate" frameStrata="LOW" toplevel="true" movable="true" inherits="SecureUnitButtonTemplate, SecureHandlerBaseTemplate" parent="ArenaLiveUnitFrames" virtual="true">
+		<Size>
+			<AbsDimension x="236" y="84" />
+		</Size>
+		
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentFlash" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\TargetingFrame-ThreatIndicator" hidden="true">
+					<Size>
+						<AbsDimension x="240" y="76" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="4" y="-8" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.96875" right="0.03125" top="0.203125" bottom="0.796875"/>
+				</Texture>
+				<Texture name="$parentBackground">
+					<Size>
+						<AbsDimension x="222" y="58" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="-16" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="0" g="0" b="0" a="0.5"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentAbsorbBar" inherits="ArenaLive_AbsorbBarTemplate" />
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="1">
+				<Texture name="$parentHealPredictionBar" inherits="ArenaLive_HealPredictionBar" />
+			</Layer>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture name="$parentAbsorbBarOverlay" inherits="ArenaLive_AbsorbBarOverlayTemplate" />
+				<Texture name="$parentAbsorbBarFullHPIndicator" inherits="ArenaLive_AbsorbFullHPIndicator" />					
+			</Layer>
+		</Layers>
+		<Frames>
+			<!-- We need to nest the frame so many times because of the FrameLevel. -->
+			<Frame setAllPoints="true">
+				<Frames>
+					<Frame setAllPoints="true">
+						<Frames>
+							<Frame setAllPoints="true">
+								<Frames>
+									<Frame setAllPoints="true">
+										<Layers>
+											<Layer level="BACKGROUND">
+												<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\TargetingFrame">
+													<Size>
+														<AbsDimension x="236" y="72" />
+													</Size>
+													<Anchors>
+														<Anchor point="TOPRIGHT">
+															<Offset>
+																<AbsDimension x="0" y="-12" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+													<TexCoords left="0.96094" right="0.039" top="0.21875" bottom="0.78125"/>
+												</Texture>
+												<FontString name="$parentName" inherits="ArenaLiveFont_Name" justifyH="RIGHT">
+													<Size>
+														<!-- I don't define X here, because the width of the frame needs to be dynamic to always show the PvPIcon 5 pixels away from the end of the Name -->
+														<AbsDimension y="12" />
+													</Size>
+												
+													<Anchors>
+														<Anchor point="TOPRIGHT">
+															<Offset>
+																<AbsDimension x="-36" y="0" />
+															</Offset>										
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="$parentLevelText" inherits="ArenaLiveFont_Level">
+													<Anchors>
+														<Anchor point="RIGHT" relativeTo="$parentName" relativePoint="LEFT" />
+													</Anchors>
+												</FontString>
+												<FontString name="$parentHealthBarText" inherits="ArenaLiveFont_StatusBarText">
+													<Size>
+														<AbsDimension x="129" y="37" />
+													</Size>
+													<Anchors>
+														<Anchor point="TOPRIGHT">
+															<Offset>
+																<AbsDimension x="-99" y="-16" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+												<FontString name="$parentPowerBarText" inherits="ArenaLiveFont_StatusBarText">
+													<Size>
+														<AbsDimension x="129" y="18" />
+													</Size>
+													<Anchors>
+														<Anchor point="TOPRIGHT">
+															<Offset>
+																<AbsDimension x="-99" y="-56" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</FontString>
+											</Layer>
+											<Layer level="ARTWORK">
+												<Texture name="$parentPVPIcon" hidden="true">
+													<Size>
+														<AbsDimension x="24" y="24"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativeTo="$parentName" relativePoint="TOPRIGHT" >
+															<Offset>
+																<AbsDimension x="0" y="1" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</Texture>
+											</Layer>
+											<Layer level="OVERLAY">
+												<Texture name="$parentStatusIcon" file="Interface\CharacterFrame\UI-StateIcon" hidden="true">
+													<Size>
+														<AbsDimension x="16" y="16"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPRIGHT" relativeTo="$parentLevelText" relativePoint="TOPLEFT" >
+															<Offset>
+																<AbsDimension x="-1" y="2" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+													<TexCoords left="0.5" right="1.0" top="0" bottom="0.5"/>
+												</Texture>	
+												<Texture name="$parentLeaderIcon" file="Interface\GroupFrame\UI-Group-LeaderIcon" hidden="true">
+													<Size>
+														<AbsDimension x="16" y="16"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPRIGHT" relativeTo="$parentStatusIcon" relativePoint="TOPLEFT" >
+															<Offset>
+																<AbsDimension x="-3" y="2"/>
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</Texture>
+												<Texture name="$parentRaidIcon" file="Interface\TargetingFrame\UI-RaidTargetingIcons" hidden="true">
+													<Size>
+														<AbsDimension x="24" y="24"/>
+													</Size>
+													<Anchors>
+														<Anchor point="RIGHT" relativeTo="$parentLeaderIcon" relativePoint="LEFT" />
+													</Anchors>
+												</Texture>
+												<Texture name="$parentQuestIcon" file="Interface\TargetingFrame\PortraitQuestBadge" hidden="true">
+													<Size>
+														<AbsDimension x="32" y="32"/>
+													</Size>
+													<Anchors>
+														<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="-110" y="-18"/>
+													</Anchors>
+												</Texture>
+												<Texture name="$parentPetBattleIcon" file="Interface\TargetingFrame\PetBadge-Beast" hidden="true">
+													<Size>
+														<AbsDimension x="32" y="32"/>
+													</Size>
+													<Anchors>
+														<Anchor point="CENTER" relativeTo="$parentQuestIcon">
+															<Offset>
+																<AbsDimension x="10" y="0" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+												</Texture>
+											</Layer>
+										</Layers>
+									</Frame>
+								</Frames>
+							</Frame>
+						</Frames>
+					</Frame>
+				</Frames>
+			</Frame>
+			<Button name="$parentMover" inherits="ArenaLive_FrameMoverTemplate" />
+			<Frame name="$parentPortrait" inherits="ArenaLive_PortraitTemplate">
+				<Size>
+					<AbsDimension x="64" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-35" y="-13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentPortraitOverlay" inherits="ArenaLive_CCIndicatorTemplate">
+				<Size>
+					<AbsDimension x="64" y="64" />
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="$parentPortrait" />
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						local frameLevel = self:GetFrameLevel() + 1;
+						self:SetFrameLevel(frameLevel);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<StatusBar name="$parentHealthBar">
+				<Size>
+					<AbsDimension x="129" y="37" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-99" y="-16" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="1.0" b="0"/>
+			</StatusBar>
+			<StatusBar name="$parentPowerBar">
+				<Size>
+					<AbsDimension x="129" y="18" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-99" y="-56" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+				<BarColor r="0" g="0" b="1.0"/>
+			</StatusBar>
+			<Frame name="$parentAuraFrame" inherits="ArenaLive_AuraFrameTemplate">
+				<Size>
+					<AbsDimension x="198" y="1" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" >
+						<Offset>
+							<AbsDimension x="-33" y="3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<StatusBar name="$parentCastBar" inherits="ALUF_LongCastBarTemplateReverse">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentAuraFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-21" y="-3" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</StatusBar>
+			<Frame name="$parentCastHistory">
+				<Size>
+					<AbsDimension x="162" y="26" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentCastBarBorder" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="-2" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentIcon1" inherits="ArenaLiveIconTemplate" id="1">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-3" y="-13" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentIcon2" inherits="ArenaLiveIconTemplate" id="2">
+				<Size>
+					<AbsDimension x="32" y="32" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-3" y="-45" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentComboPointFrame" inherits="ALUF_ComboPointFrameTemplate" >
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-10" y="-14" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Button>
+	
+	<Button name="ALUF_TargetFrame" inherits="ALUF_TargetFrameTemplate">
+		<Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset>
+					<AbsDimension x="250" y="-4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+	</Button>
+	
+	<Script file="TargetFrame.lua"/>
+</Ui>

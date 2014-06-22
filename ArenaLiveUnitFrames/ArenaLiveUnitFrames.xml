@@ -1,0 +1,27 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+
+	
+	<Frame name="ArenaLiveUnitFrames" setAllPoints="true" parent="UIParent">
+	</Frame>	
+	
+	<Script File="localisation.lua" />
+	<Script File="localisationdeDE.lua" />
+	<Script File="localisationkoKR.lua" />
+	<Script File="localisationzhCN.lua" />
+	
+	<Script File="ArenaLiveUnitFrames.lua" />
+	<Include File="CastBarTemplates.xml" />
+	<Include File="ComboPointTemplate.xml" />	
+	<Include File="Options\Options.xml" />
+	<Include File="TargetFrame.xml" />
+	<Include File="FocusFrame.xml" />
+	<Include File="TargetOfTargetFrame.xml" />
+	<Include File="PetFrame.xml" />
+	<Include File="PlayerFrame.xml" />
+	<Include File="ArenaEnemyFrames.xml" />
+	<Include File="PartyFrames.xml" />
+	<!--<Include File="BossFrames.xml" />-->
+	
+</Ui>

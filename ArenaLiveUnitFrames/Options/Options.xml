@@ -1,0 +1,129 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	
+	<Include File="PlayerFrame.xml" />
+	<Include File="PetFrame.xml" />
+	<Include File="TargetFrame.xml" />
+	<Include File="TargetOfTargetFrame.xml" />
+	<Include File="FocusFrame.xml" />
+	<Include File="TargetOfFocusFrame.xml" />
+	<Include File="ArenaEnemyFrames.xml" />
+	<Include File="PartyFrames.xml" />
+	<!--<Include File="BossFrames.xml" />-->
+	<Include File="Profiles.xml" />
+	
+	<Frame name="ALUF_Options" hidden="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="GameFontNormalLarge" >
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="15" y="-15"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="15" y="-15"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-15" y="15"/>
+						</Offset>						
+					</Anchor>
+				</Anchors>
+
+				<Frames>
+					<CheckButton name="$parentOnlyShowCastableBuffs" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentOnlyShowDispellableDebuffs" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentOnlyShowCastableBuffs" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentOnlyShowPlayerDebuffs" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentOnlyShowDispellableDebuffs" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="$parentHideBlizzCastBar" inherits="OptionsCheckButtonTemplate" checked="false">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentOnlyShowPlayerDebuffs" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<Frame name="$parentBorderColour">
+						<Size>
+							<AbsDimension x="150" y="32" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentHideBlizzCastBar" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-15" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<FontString name="$parentTitle" inherits="GameFontNormal" >
+									<Anchors>
+										<Anchor point="TOPLEFT" />
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="$parentPicker">
+								<Size>
+									<AbsDimension x="16" y="16" />
+								</Size>
+								<Anchors>
+									<Anchor point="LEFT" relativeTo="$parentTitle" relativePoint="RIGHT">
+										<Offset>
+											<AbsDimension x="5" y="0" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Layers>
+									<Layer level="BACKGROUND">
+										<Texture name="$parentPickedColour">
+											<Color r="1" g="1" b="1" a="1" />
+										</Texture>
+									</Layer>
+								</Layers>
+							</Button>
+						</Frames>
+					</Frame>
+				</Frames>					
+			</Frame>
+		</Frames>
+	</Frame>
+
+	<Script File="Options.lua" />
+</Ui>

@@ -1,0 +1,8 @@
+## Interface: 50400
+## Title: ArenaLive [UnitFrames]
+## Notes: UnitFrames based on the design of the ArenaLive Spectator UI
+## Author: Vadrak
+## Version: 0.7beta
+## Dependencies: ArenaLiveCore
+
+ArenaLiveUnitFrames.xml

@@ -1,0 +1,204 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+	<Font name="ArenaLiveFont_Name" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
+	<Font name="ArenaLiveFont_NameRU" font="Fonts\FRIZQT___CYR.TTF" alternateTo="ArenaLiveFont_Name" alternateAlphabetID = "2" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>	
+
+	<Font name="ArenaLiveFont_NameZH" font="Fonts\ARKai_T.ttf" alternateTo="ArenaLiveFont_Name" alternateAlphabetID = "1" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>	
+
+	<Font name="ArenaLiveFont_NameKO" font="Fonts\2002.TTF" alternateTo="ArenaLiveFont_Name" alternateAlphabetID = "0" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+	
+	
+	<Font name="ArenaLiveFont_NameSmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+	<Font name="ArenaLiveFont_NameSmallRU" font="Fonts\FRIZQT___CYR.TTF" alternateTo="ArenaLiveFont_NameSmall" alternateAlphabetID = "2" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
+	<Font name="ArenaLiveFont_NameSmallZH" font="Fonts\ARKai_T.ttf" alternateTo="ArenaLiveFont_NameSmall" alternateAlphabetID = "1" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
+	<Font name="ArenaLiveFont_NameSmallKO" font="Fonts\2002.TTF" alternateTo="ArenaLiveFont_NameSmall" alternateAlphabetID = "0" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+
+	
+	<Font name="ArenaLiveFont_NameVerySmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+	<Font name="ArenaLiveFont_NameVerySmallRU" font="Fonts\FRIZQT___CYR.TTF" alternateTo="ArenaLiveFont_NameVerySmall" alternateAlphabetID = "2" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
+	<Font name="ArenaLiveFont_NameVerySmallZH" font="Fonts\ARKai_T.ttf" alternateTo="ArenaLiveFont_NameVerySmall" alternateAlphabetID = "1" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>	
+
+	<Font name="ArenaLiveFont_NameVerySmallKO" font="Fonts\2002.TTF" alternateTo="ArenaLiveFont_NameVerySmall" alternateAlphabetID = "0" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+
+	
+	<Font name="ArenaLiveFont_Level" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>	
+
+	<Font name="ArenaLiveFont_LevelSmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+	
+	<Font name="ArenaLiveFont_LevelVerySmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>	
+	
+	<Font name="ArenaLiveFont_StatusBarTextVeryLarge" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+	
+		<FontHeight>
+			<AbsValue val="14"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>	
+	
+	<Font name="ArenaLiveFont_StatusBarTextLarge" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+	
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+	<Font name="ArenaLiveFont_StatusBarText" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+
+	<Font name="ArenaLiveFont_StatusBarTextSmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+	
+		<FontHeight>
+			<AbsValue val="8"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	
+	<Font name="ArenaLiveFont_StatusBarTextVerySmall" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+	
+		<FontHeight>
+			<AbsValue val="6"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>	
+	
+	<Font name="ArenaLiveFont_CooldownText" font="Fonts\FRIZQT__.TTF" outline="NORMAL" justifyV="MIDDLE" justifyH="CENTER" virtual="true">
+	
+		<FontHeight>
+			<AbsValue val="24"/>
+		</FontHeight>
+		
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>		
+	
+</Ui>
