@@ -147,6 +147,7 @@ local function UpdateFramePoints(self)
 			frameSpacing = -frameSpacing;
 		end
 
+		showPlayer = false
 		if ( showPlayer ) then
 			
 			headerHeight = math.abs(frameSpacing) * 4;
@@ -226,13 +227,13 @@ end
 
 local function Update(self)
 	
-	local playerFrame = self["partyPlayerFrame"];
+	--[[local playerFrame = self["partyPlayerFrame"];
 	if ( self:GetAttribute("showplayer") ) then
 		if ( not playerFrame.guid ) then
 			playerFrame:SetUnitGUID(playerFrame.unit);
 		end
 		playerFrame:Update();	
-	end
+	end]]
 	
 	for i = 1, 4 do
 		local frameRef = "partyFrame"..i;
@@ -251,13 +252,13 @@ local function OnAttributeChanged(self, name, value)
 		return;
 	end
 	
-	local playerFrame = self["partyPlayerFrame"];
+	--[[local playerFrame = self["partyPlayerFrame"];
 	if ( self:GetAttribute("showPlayer") ) then
 		if ( not playerFrame.guid ) then
 			playerFrame:SetUnitGUID(playerFrame.unit);
 		end		
 		playerFrame:Update();
-	end
+	end]]
 	
 	for i = 1, 4 do
 		local frameRef = "partyFrame"..i;

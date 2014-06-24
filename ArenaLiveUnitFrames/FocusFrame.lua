@@ -19,7 +19,6 @@ function ALUF_FocusFrame:Initialise()
 	self:SetScale(scale);
 		
 	ArenaLiveCore:AddFrame(self, "UnitFrame", addonName, frameType, onRightClick, false);
-	ArenaLiveCore:AddFrame (_G[prefix.."Flash"], "ThreatIndicator", self);
 	ArenaLiveCore:AddFrame(healthBar, "HealthBar", self, true);
 	ArenaLiveCore:AddFrame (_G[prefix.."HealthBarText"], "StatusBarText", "HealthBarText", "DEAD_OR_GHOST", nil, true, self)
 	ArenaLiveCore:AddFrame(powerBar, "PowerBar", self, true);

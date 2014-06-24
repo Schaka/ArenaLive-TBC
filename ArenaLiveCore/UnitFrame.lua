@@ -108,7 +108,7 @@ end
 	 Resets all unit data for a unit frame.
 ]]--
 local function ResetUnit (self)
-	if ( not InCombatLockdown() ) then
+	if ( not InCombatLockdown()) then
 		self.updateUnit = nil;
 		self:SetAttribute("unit", nil);
 	else
@@ -155,7 +155,6 @@ local function Reset (self)
 end
 
 local function OnAttributeChanged (self, name, value)
-	
 	if ( name ~= "unit" ) then
 		return;
 	end
@@ -165,6 +164,7 @@ local function OnAttributeChanged (self, name, value)
 		self:ResetUnitID(self);
 		self:ResetUnitGUID(self);
 		self:Update();
+		self:Hide()
 		return;
 	end
 		
@@ -182,6 +182,7 @@ local function OnAttributeChanged (self, name, value)
 	if ( updateFrame ) then
 		self:Update();
 	end
+	
 end
 
 local function OnEnter (self)
@@ -251,13 +252,7 @@ function UnitFrame:AddFrame (frame, addon, frameType, rightClick, forceShow, has
 		
 		frame:SetAttribute("*type1", "target");
 		
-		if ( rightClickType == "function" )then
-			frame:SetAttribute("*type2", "menu");
-			frame.menu = rightClick;
-		elseif ( rightClickType == "string" ) then
-			frame:SetAttribute("*type2", rightClick);
-		end
-
+		frame:SetAttribute("*type2", "menu");
 		frame:SetAttribute("alforceshow", forceShow);
 		
 		table.insert(UnitFrame.UnitFrameTable, frame);
@@ -287,13 +282,31 @@ function UnitFrame:AddFrame (frame, addon, frameType, rightClick, forceShow, has
 	frame:SetScript("OnEnter", frame.OnEnter);
 	frame:SetScript("OnLeave", frame.OnLeave);
 	
+	
+	local showmenu = function()
+		local u = frame:GetAttribute("unit")
+		if u == "player" then
+			ToggleDropDownMenu(1, nil, PlayerFrameDropDown, frame, 60, 10);
+		elseif u == "target" then
+			ToggleDropDownMenu(1, nil, TargetFrameDropDown, frame, 60, 10);
+		elseif u == "party1" then
+			ToggleDropDownMenu(1, nil, PartyMemberFrame1DropDown, frame, 60, 10);
+		elseif u == "party2" then
+			ToggleDropDownMenu(1, nil, PartyMemberFrame2DropDown, frame, 60, 10);
+		elseif u == "party3" then
+			ToggleDropDownMenu(1, nil, PartyMemberFrame3DropDown, frame, 60, 10);
+		elseif u == "party4" then
+			ToggleDropDownMenu(1, nil, PartyMemberFrame4DropDown, frame, 60, 10);		
+		end
+	end
+	
 	if ( not hasHeader ) then
-		--SecureHandler_OnLoad(frame);
+		SecureUnitButton_OnLoad(frame, frame:GetAttribute("unit"), showmenu);
 		--frame:WrapScript(frame, "OnAttributeChanged", onAttributeChangedSnippet);
 	end
 	
 	-- Set up a secure OnAttributeChanged function and RegisterUnitWatch with asState = true. This way I can decide myself if the frame should be shown or not.
-	RegisterUnitWatch(frame, true);
+	RegisterUnitWatch(frame, false);
 	
 	-- Add ClickCast functionality.
 	UnitFrame:RegisterClickCast(frame);
@@ -547,13 +560,6 @@ function UnitFrame:OnEvent(event, ...)
 					frame:Show()
 				end
 			end
-		elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-				local frame = UnitFrame.UnitFrameTable[key];			
-				if ( value and frame ) then
-					frame:Hide()
-				end
-			end
 		end
 	elseif ( event == "PLAYER_FOCUS_CHANGED" ) then
 		local unit = "focus";
@@ -567,13 +573,6 @@ function UnitFrame:OnEvent(event, ...)
 					frame:Show()
 				end
 			end
-		elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-				local frame = UnitFrame.UnitFrameTable[key];			
-				if ( value and frame ) then
-					frame:Hide()
-				end
-			end	
 		end
 	elseif ( event == "UNIT_PET" ) then
 		
@@ -600,13 +599,6 @@ function UnitFrame:OnEvent(event, ...)
 					frame:Show()
 				end
 			end
-		elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-				local frame = UnitFrame.UnitFrameTable[key];			
-				if ( value and frame ) then
-					frame:Hide()
-				end
-			end	
 		end
 	elseif ( event == "UNIT_CONNECTION" ) then
 		local unit = select(1, ...);

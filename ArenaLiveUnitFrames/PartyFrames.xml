@@ -483,7 +483,7 @@
 		</Anchors>
 		<Frames>
 			<Button name="$parentMover" inherits="ArenaLive_FrameMoverTemplate" />
-			<Button name="ALUF_PartyPlayerFrame" inherits="ALUF_PartyMemberFrameTemplate">
+			<!--Button name="ALUF_PartyPlayerFrame" inherits="ALUF_PartyMemberFrameTemplate">
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
@@ -491,7 +491,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-			</Button>
+			</Button-->
 			<Button name="ALUF_PartyFrame1" inherits="ALUF_PartyMemberFrameTemplate" id="1">
 				<Anchors>
 					<Anchor point="TOPLEFT">

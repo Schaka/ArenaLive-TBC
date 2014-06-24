@@ -64,8 +64,6 @@ local function InitialisePartyPetFrame(self, parent)
 	ArenaLiveCore:AddFrame(healthBarText, "StatusBarText", "HealthBarText", "DEAD_OR_GHOST", nil, true, self);
 	ArenaLiveCore:AddFrame(portrait, "Portrait", _G[prefix.."PortraitTexture"], _G[prefix.."Portrait3D"], self);
 	ArenaLiveCore:AddFrame(name, "NameText", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."AbsorbBar"], "AbsorbBar", _G[prefix.."AbsorbBarOverlay"], 32, _G[prefix.."AbsorbBarFullHPIndicator"], self);
-	ArenaLiveCore:AddFrame(_G[prefix.."HealPredictionBar"], "HealPredictionBar", self);
 	self:SetAttribute("alframelock", true);
 end
 
@@ -100,11 +98,7 @@ local function InitialisePartyFrame(self)
 	ArenaLiveCore:AddFrame(_G[prefix.."PVPIcon"], "PvPIcon", 24, 24, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."LeaderIcon"], "LeaderIcon", 16, 16, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."MasterLooterIcon"], "MasterLooterIcon", 16, 16, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."RoleIcon"], "RoleIcon", 16, 16, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."SpeakerFrame"], "VoiceChat", _G[prefix.."SpeakerFrameOn"], _G[prefix.."SpeakerFrameFlash"], _G[prefix.."SpeakerFrameMuted"], self);
 	ArenaLiveCore:AddFrame(_G[prefix.."ReadyCheck"], "ReadyCheck", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."AbsorbBar"], "AbsorbBar", _G[prefix.."AbsorbBarOverlay"], 32, _G[prefix.."AbsorbBarFullHPIndicator"], self);
-	ArenaLiveCore:AddFrame(_G[prefix.."HealPredictionBar"], "HealPredictionBar", self);
 	
 	-- Initialise Pet and party target frames.
 	InitialisePartyTargetFrame(_G[prefix.."TargetFrame"], self);
@@ -112,7 +106,6 @@ local function InitialisePartyFrame(self)
 	
 	-- Party Frame OnUpdate script:
 	self:SetScript("OnUpdate", PartyFrameOnUpdate);
-	
 end
 
 function ALUF_PartyFrames:Initialise()
@@ -122,17 +115,16 @@ function ALUF_PartyFrames:Initialise()
 		
 	self:SetScale(scale);
 	
-	ArenaLiveCore:AddFrame(self, "PartyHeader", addonName, "PartyFrames", _G["ALUF_PartyFrame1"], _G["ALUF_PartyFrame2"], _G["ALUF_PartyFrame3"], _G["ALUF_PartyFrame4"], _G["ALUF_PartyPlayerFrame"])
+	ArenaLiveCore:AddFrame(self, "PartyHeader", addonName, "PartyFrames", _G["ALUF_PartyFrame1"], _G["ALUF_PartyFrame2"], _G["ALUF_PartyFrame3"], _G["ALUF_PartyFrame4"])
 	ArenaLiveCore:AddFrame(_G[prefix.."Mover"], "FrameMover", _G[prefix.."MoverText"], self);
 	
-	local frame = _G["ALUF_PartyPlayerFrame"];
-	InitialisePartyFrame(frame);
+	local frame --[[= _G["ALUF_PartyPlayerFrame"];
+	InitialisePartyFrame(frame);]]
 	
 	for i = 1, 4 do
 		frame = _G["ALUF_PartyFrame"..i]
 		InitialisePartyFrame(frame);
 	end	
-
 end
 
 function ALUF_PartyFrames:Toggle()
@@ -145,7 +137,7 @@ function ALUF_PartyFrames:Toggle()
 	end
 
 	-- Set/Reset party frames
-	local frame = self["partyPlayerFrame"]
+	local frame --[[= self["partyPlayerFrame"]
 	local petFrame = frame.petFrame;
 	local targetFrame = frame.targetFrame;
 	frame:Hide()
@@ -159,7 +151,7 @@ function ALUF_PartyFrames:Toggle()
 		frame:ResetUnit();
 		petFrame:ResetUnit();
 		targetFrame:ResetUnit();
-	end	
+	end	]]
 	
 	for i = 1, 4 do
 		frame = self["partyFrame"..i];
@@ -265,8 +257,8 @@ function ALUF_PartyFrames:UpdateAttachements()
 	petFrameEnabled = ArenaLiveCore:GetDBEntry("ArenaLiveUnitFrames", "PartyFrames/PetFrame/Enabled");
 	petFramePosition = ArenaLiveCore:GetDBEntry("ArenaLiveUnitFrames", "PartyFrames/PetFrame/Position");
 	
-	local frame = self["partyPlayerFrame"];
-	UpdateFrameAttachements(frame);
+	local frame --[[= self["partyPlayerFrame"];
+	UpdateFrameAttachements(frame);]]
 	
 	for i = 1 , 4 do
 		frame = self["partyFrame"..i];

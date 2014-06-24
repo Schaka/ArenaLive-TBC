@@ -35,10 +35,7 @@ function ALUF_PlayerFrame:Initialise()
 	ArenaLiveCore:AddFrame(_G[prefix.."PVPIcon"], "PvPIcon", 24, 24, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."LeaderIcon"], "LeaderIcon", 16, 16, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."MasterLooterIcon"], "MasterLooterIcon", 16, 16, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."RoleIcon"], "RoleIcon", 16, 16, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."StatusIcon"], "StatusIcon", 18, 18, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."SpeakerFrame"], "VoiceChat", _G[prefix.."SpeakerFrameOn"], _G[prefix.."SpeakerFrameFlash"], _G[prefix.."SpeakerFrameMuted"], self);
-	ArenaLiveCore:AddFrame(_G[prefix.."MultiGroupFrame"], "MultiGroupIcon", _G[prefix.."MultiGroupFrameHomePartyIcon"], _G[prefix.."MultiGroupFrameInstancePartyIcon"], self);
 	ArenaLiveCore:AddFrame(_G[prefix.."ReadyCheck"], "ReadyCheck", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."Mover"], "FrameMover", _G[prefix.."MoverText"], self);
 end

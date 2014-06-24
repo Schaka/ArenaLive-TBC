@@ -18,7 +18,6 @@ function ALUF_TargetFrame:Initialise()
 	self:SetScale(scale);
 		
 	ArenaLiveCore:AddFrame(self, "UnitFrame", addonName, frameType, onRightClick, false);
-	ArenaLiveCore:AddFrame (_G[prefix.."Flash"], "ThreatIndicator", self);
 	ArenaLiveCore:AddFrame(healthBar, "HealthBar", self, true);
 	ArenaLiveCore:AddFrame (_G[prefix.."HealthBarText"], "StatusBarText", "HealthBarText", "DEAD_OR_GHOST", nil, true, self)
 	ArenaLiveCore:AddFrame(powerBar, "PowerBar", self, true);
@@ -35,10 +34,6 @@ function ALUF_TargetFrame:Initialise()
 	ArenaLiveCore:AddFrame(_G[prefix.."LeaderIcon"], "LeaderIcon", 16, 16, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."StatusIcon"], "StatusIcon", 18, 18, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."RaidIcon"], "RaidIcon", 24, 24, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."QuestIcon"], "QuestIcon", 32, 32, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."PetBattleIcon"], "PetBattleIcon", 32, 32, "HORIZONTAL", self);
-	ArenaLiveCore:AddFrame(_G[prefix.."AbsorbBar"], "AbsorbBar", _G[prefix.."AbsorbBarOverlay"], 32, _G[prefix.."AbsorbBarFullHPIndicator"], self);
-	ArenaLiveCore:AddFrame(_G[prefix.."HealPredictionBar"], "HealPredictionBar", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."Mover"], "FrameMover", _G[prefix.."MoverText"], self);
 	ArenaLiveCore:AddFrame(_G[prefix.."ComboPointFrame"], "ComboPoints", _G[prefix.."ComboPointFrameComboPoint1"], _G[prefix.."ComboPointFrameComboPoint2"], _G[prefix.."ComboPointFrameComboPoint3"], _G[prefix.."ComboPointFrameComboPoint4"], _G[prefix.."ComboPointFrameComboPoint5"], self)
 	self:SetUnit("target");
@@ -55,7 +50,6 @@ function ALUF_TargetFrame:Toggle()
 	else
 		self:ResetUnit();
 	end
-
 end
 
 function ALUF_TargetFrame:UpdateAttachements()

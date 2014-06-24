@@ -1,8 +1,12 @@
-## Interface: 50400
+## Interface: 20400
 ## Title: ArenaLive [Core]
 ## Notes: Core functions for addons that are based on the ArenaLive framework.
 ## Author: Vadrak
 ## Version: 2.0
-## SavedVariables: ArenaLive_SavedVariables
+## SavedVariables: ArenaLive_SavedVariables, BuffLibDB
+
+libs\LibStub\LibStub.lua
+libs\DRData-1.0\DRData-1.0.xml
+libs\LibSimpleOptions-1.0\lib.xml
 
 ArenaLiveCore.xml

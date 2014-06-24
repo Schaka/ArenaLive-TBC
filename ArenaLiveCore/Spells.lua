@@ -629,21 +629,15 @@ ArenaLiveCore.spellDB = {
 		["dispelsOrInterrupts"] =
 			{
 				-- TO DO: SPEC SPECIFIC SPELLS
-				["DEATHKNIGHT"] = { 47528, 15, false }, 	-- Mind Freeze
-				["DRUID"] = { 88423, 8, true }, 			-- Nature's Cure
+				["DRUID"] = { 8983, 60, false }, 			-- Nature's Cure
 				["HUNTER"] = { 34490, 20, false }, 			-- Silencing Shot
 				["MAGE"] = { 2139, 24, false }, 			-- Counter Spell
-				["MONK"] = { 115450, 8, true }, 			-- Detox
-				["PALADIN"] = { 4987, 8, true }, 			-- Cleanse
-				["PRIEST"] = { 527, 8, true }, 				-- Purify
-				["ROGUE"] = { 1766, 15, false }, 			-- Kick
-				["SHAMAN"] = { 51886, 8, true }, 			-- Cleanse Spirit
-				["WARLOCK"] = { 
-					[1] = { 132409, 24, false }, 			-- Spell lock Warlock
-					[2] = { 115782, 24, false }, 			-- Optical Blast Pet
-					[3] = { 119910, 24, false }, 			-- Spell lock Pet 
-				},
-				["WARRIOR"] = { 6552, 15, false },			-- Pummel
+				["PALADIN"] = { 10308, 45, false }, 		-- Cleanse
+				["PRIEST"] = { 10890, 27, false }, 			-- Purify
+				["ROGUE"] = { 38768, 10, false }, 			-- Kick
+				["WARRIOR"] = { 6554, 10, false },			-- Pummel
+				["SHAMAN"] = { 8042, 6, false },
+				["WARLOCK"] = { 19647, 24, false },
 			},
 		["diminishingReturns"] =
 			{						

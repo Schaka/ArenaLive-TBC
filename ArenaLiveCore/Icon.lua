@@ -99,10 +99,9 @@ local UnitFrame = ArenaLiveCore:GetHandler("UnitFrame");
 local Cooldown = ArenaLiveCore:GetHandler("Cooldown");
 
 -- Register the handler for all needed events.
-Icon:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED");
 Icon:RegisterEvent("UNIT_FACTION");
 Icon:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-Icon:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_DISPEL");
+Icon:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS");
 
 -- Set up a table that stores the number of icons a unit frame has.
 local numIcons = {};
@@ -279,7 +278,7 @@ local function UpdateTexture(self)
 		
 	elseif ( iconType == "specialisation" ) then
 		-- have to think of something here for later when implementing arenaframes
-		
+		return
 	elseif ( iconType == "interruptOrDispel" and isPlayer and class ) then
 		local varType = type(ArenaLiveCore.spellDB["dispelsOrInterrupts"][class][1]);
 		if ( varType == "table") then
@@ -413,26 +412,14 @@ function Icon:GetSpellMatch(event, spellID, race, class)
 			end			
 		end		
 	
-	elseif ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_DISPEL" ) then
-		
+	elseif ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" ) then
 		for classFilename, classTable in pairs(ArenaLiveCore.spellDB.dispelsOrInterrupts ) do
-			-- Warlocks have more than one spell ID for their interrupt...
-			varType = type(classTable[1]);
-			
-			if (varType == "number") then
-				if ( classTable[3] and spellID == classTable[1] ) then
-					match = "interruptOrDispel";
-					spellCD = classTable[2];
-					break;
-				end
-			elseif (varType == "table" ) then
-				for key, value in ipairs(classTable[1]) do
-					if ( classTable[key][3] and spellID == classTable[key][1] ) then
-						match = "interruptOrDispel";
-						spellCD = classTable[2];
-						break;
-					end
-				end
+		-- technically needs implementation for shared CD for shaman shocks
+		--print(classTable[1].."  "..classTable[2].."  "..spellID)
+			if ( spellID == GetSpellInfo(classTable[1]) ) then
+				match = "interruptOrDispel";
+				spellCD = classTable[2];
+				break;
 			end
 		end		
 	
@@ -450,7 +437,6 @@ end
 local affectedFrame, affectedCDTable, affectedSharedTable;
 function Icon:OnEvent (event, ...)
 	local unit, guid, race, match, class, spellID, spellCD, sharedCD, isPlayer, _;
-	
 	-- *** SIMPLE ICON HANDLING ***
 	if ( event == "PLAYER_SPECIALIZATION_CHANGED" ) then
 		local unit = ...;
@@ -497,16 +483,18 @@ function Icon:OnEvent (event, ...)
 		isPlayer = UnitIsPlayer(unit);
 		spellID = select(5, ...);	
 		
-	elseif ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_DISPEL" ) then
-		guid = select(4, ...);
-		spellID = select(15, ...);
+	elseif ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" ) then
+		local timestamp, eventType, sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
+		print(timestamp.." "..eventType.."  "..sourceGUID)
+		guid = sourceGUID
+		spellID = spellName
 		match = true;
 	end
 	
 	
 	-- *** COOLDOWN HANDLING ***
 	-- Check if there is a matching spell in our spell database.
-	if ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_DISPEL" or (event == "UNIT_SPELLCAST_SUCCEEDED" and isPlayer ) ) then
+	if ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" or (event == "UNIT_SPELLCAST_SUCCEEDED" and isPlayer ) ) then
 		match, spellCD, sharedCD = Icon:GetSpellMatch(event, spellID, race, class);
 	end
 	
@@ -578,8 +566,7 @@ function Icon:OnEvent (event, ...)
 			if ( expirationTime < GetTime() ) then
 				interruptOrDispelCooldownStorage[guid] = nil;
 			end
-		end
-				
+		end	
 		interruptOrDispelCooldownStorage[guid] = GetTime() + spellCD;
 		
 		
