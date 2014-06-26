@@ -55,6 +55,7 @@
 	<Include File="Icon.xml" />
 	<Include File="CCIndicator.xml" />
 	<Script File="CastBar.lua" />
+	<Script File="TrinketTracker.lua" />
 	<Include File="Aura.xml" />
 	<Include File="DRTracker.xml" />
 

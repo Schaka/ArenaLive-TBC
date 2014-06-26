@@ -300,12 +300,8 @@ function UnitFrame:AddFrame (frame, addon, frameType, rightClick, forceShow, has
 		end
 	end
 	
-	if ( not hasHeader ) then
-		SecureUnitButton_OnLoad(frame, frame:GetAttribute("unit"), showmenu);
-		--frame:WrapScript(frame, "OnAttributeChanged", onAttributeChangedSnippet);
-	end
-	
 	-- Set up a secure OnAttributeChanged function and RegisterUnitWatch with asState = true. This way I can decide myself if the frame should be shown or not.
+	SecureUnitButton_OnLoad(frame, frame:GetAttribute("unit"), showmenu);
 	RegisterUnitWatch(frame, false);
 	
 	-- Add ClickCast functionality.
@@ -557,7 +553,6 @@ function UnitFrame:OnEvent(event, ...)
 				if ( value and frame ) then
 					frame:SetUnitGUID(unit);
 					frame:Update();
-					frame:Show()
 				end
 			end
 		end
@@ -570,7 +565,6 @@ function UnitFrame:OnEvent(event, ...)
 				if ( value and frame ) then
 					frame:SetUnitGUID(unit);
 					frame:Update();
-					frame:Show()
 				end
 			end
 		end
@@ -596,7 +590,6 @@ function UnitFrame:OnEvent(event, ...)
 				if ( value and frame ) then
 					frame:SetUnitGUID(unit);
 					frame:Update();
-					frame:Show()
 				end
 			end
 		end
@@ -607,17 +600,10 @@ function UnitFrame:OnEvent(event, ...)
 				local frame = UnitFrame.UnitFrameTable[key];
 					
 				if ( value and frame ) then
+					frame:SetUnitGUID(unit);
 					frame:Update();
-					frame:Show()
 				end
 			end
-		elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-				local frame = UnitFrame.UnitFrameTable[key];			
-				if ( value and frame ) then
-					frame:Hide()
-				end
-			end	
 		end
 	elseif ( event == "UNIT_NAME_UPDATE" ) then
 		local unit = select(1, ...);
@@ -628,16 +614,8 @@ function UnitFrame:OnEvent(event, ...)
 				if ( value and frame ) then
 					frame:SetUnitGUID(unit);
 					frame:Update();
-					frame:Show()
 				end
 			end
-		elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-				local frame = UnitFrame.UnitFrameTable[key];			
-				if ( value and frame ) then
-					frame:Hide()
-				end
-			end	
 		end
 	elseif ( event == "PARTY_MEMBERS_CHANGED" ) then
 		for i=1,4 do
@@ -649,16 +627,8 @@ function UnitFrame:OnEvent(event, ...)
 					if ( value and frame ) then
 						frame:SetUnitGUID(unit);
 						frame:Update();
-						frame:Show()
 					end
 				end
-			elseif ( UnitFrame.UnitIDTable[unit] and not UnitExists(unit) ) then
-				for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
-					local frame = UnitFrame.UnitFrameTable[key];			
-					if ( value and frame ) then
-						frame:Hide()
-					end
-				end	
 			end	
 		end
 	end

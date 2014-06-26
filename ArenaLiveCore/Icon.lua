@@ -100,7 +100,7 @@ local Cooldown = ArenaLiveCore:GetHandler("Cooldown");
 
 -- Register the handler for all needed events.
 Icon:RegisterEvent("UNIT_FACTION");
-Icon:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+--Icon:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
 Icon:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS");
 
 -- Set up a table that stores the number of icons a unit frame has.
@@ -421,8 +421,31 @@ function Icon:GetSpellMatch(event, spellID, race, class)
 				spellCD = classTable[2];
 				break;
 			end
-		end		
-	
+		end
+		for key, value in pairs(ArenaLiveCore.spellDB.racials) do
+			--print(key.."  "..type(value).."  "..type(value[1]))
+			--if value and value[1] then print(key.."  "..value[1]) end
+			if type(value[1]) == "number" and spellID == GetSpellInfo(value[1]) then
+				match = "racial"
+				spellCD = value[2]
+				sharedCD = value[3]
+				break;
+			elseif type(value[1]) == "nil" then
+				for k,v in pairs(value) do
+					if spellID == GetSpellInfo(v[1]) then
+						match = "racial"
+						spellCD = v[2]
+						sharedCD = v[3]
+						break;
+					end
+				end
+			end
+		end
+		if spellID == ArenaLiveCore.spellDB.trinket then
+			match = "trinket"
+			spellCD = 120
+			sharedCD = 0
+		end
 	end
 	
 	return match, spellCD, sharedCD;
@@ -485,16 +508,20 @@ function Icon:OnEvent (event, ...)
 		
 	elseif ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" ) then
 		local timestamp, eventType, sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
-		print(timestamp.." "..eventType.."  "..sourceGUID)
+		--print(timestamp.." "..eventType.."  "..sourceGUID)
 		guid = sourceGUID
-		spellID = spellName
+		if spellNum == 42292 then
+			spellID = spellNum
+		else
+			spellID = spellName
+		end
 		match = true;
 	end
 	
 	
 	-- *** COOLDOWN HANDLING ***
 	-- Check if there is a matching spell in our spell database.
-	if ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" or (event == "UNIT_SPELLCAST_SUCCEEDED" and isPlayer ) ) then
+	if ( event == "COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS" ) then
 		match, spellCD, sharedCD = Icon:GetSpellMatch(event, spellID, race, class);
 	end
 	
@@ -504,7 +531,7 @@ function Icon:OnEvent (event, ...)
 	
 	-- There is a match. Now update the tables accordingly.
 	if ( match == "trinket" or match == "racial" ) then
-		guid = UnitGUID(unit);
+		--guid = UnitGUID(unit);
 		
 		if ( match == "trinket" ) then
 			affectedCDTable = trinketCooldownStorage;
@@ -541,14 +568,14 @@ function Icon:OnEvent (event, ...)
 			end
 		end
 
-		if ( UnitFrame.UnitIDTable[unit] ) then
-			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
+		if ( UnitFrame.UnitGUIDTable[guid] ) then
+			for key, value in pairs(UnitFrame.UnitGUIDTable[guid]) do
 				if ( value and UnitFrame.UnitFrameTable[key] ) then
 					affectedFrame = UnitFrame.UnitFrameTable[key];
 					if ( numIcons[affectedFrame] and numIcons[affectedFrame] > 0 ) then
 						for i = 1, numIcons[affectedFrame] do
 							local iconType = ArenaLiveCore:GetDBEntry(affectedFrame.addonName, affectedFrame.frameType.."/Icon"..i.."/Type");
-							if ( iconType == match or iconType == sharedMatch  ) then
+							if ( iconType == match ) then
 								affectedFrame["icon"..i]:Update(true);
 							end
 						end

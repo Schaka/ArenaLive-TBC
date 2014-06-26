@@ -343,9 +343,12 @@ end
 
 function BuffLib:HideFrames(destGUID, spellName, spellID)
 	if self.guids[destGUID] and self.guids[destGUID][spellName] and self.abilities[spellName] then
+		-- combatLog
 		self.guids[destGUID][spellName].startTime = 0
 		self.guids[destGUID][spellName].endTime = 0
+		-- sync
 		self.guids[destGUID][spellName].timeLeft = 0
+		self.guids[destGUID][spellName].getTime = 0
 	end
 end
 
@@ -498,9 +501,9 @@ function BuffLib:CHAT_MSG_ADDON(prefix, message, channel, sender)
 		elseif guid == UnitGUID("party2") then	
 			Aura:OnEvent("UNIT_AURA", "party2")
 		elseif guid == UnitGUID("party3") then	
-			Aura:OnEvent("UNIT_AURA", "party4")
+			Aura:OnEvent("UNIT_AURA", "party3")
 		elseif guid == UnitGUID("party4") then	
-			Aura:OnEvent("UNIT_AURA", "party4")		
+			Aura:OnEvent("UNIT_AURA", "party4")				
 		end
 	end
 end
@@ -583,11 +586,11 @@ function UnitBuff(unitID, index, castable)
 			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "RAID")
 			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "BATTLEGROUND")
 		end]]
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft ~= nil and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false
-	elseif (timeLeft == nil and EBFrame ~=nil) and (EBFrame.timeLeft == nil or (EBFrame.timeLeft ~= nil and EBFrame.getTime and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) <= 0)) then -- have to load timer from combatlog :(
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.endTime then -- have to load timer from combatlog :(
 		duration = EBFrame.endTime
 		timeLeft = EBFrame.endTime-(GetTime()-EBFrame.startTime)
 		isMine = false		
@@ -621,11 +624,11 @@ function UnitDebuff(unitID, index, castable)
 			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "RAID")
 			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "BATTLEGROUND")
 		end]]
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft ~= nil and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false
-	elseif (timeLeft == nil and EBFrame ~=nil) and (EBFrame.timeLeft == nil or (EBFrame.timeLeft ~= nil and EBFrame.getTime and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) <= 0)) then
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.endTime then
 		duration = EBFrame.endTime
 		timeLeft = EBFrame.endTime-(GetTime()-EBFrame.startTime)
 		isMine = false

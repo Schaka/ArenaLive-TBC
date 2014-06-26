@@ -92,7 +92,7 @@ local function Update (self)
 		frame = _G[frameName];
 		
 		-- Retrieve buff info for the unit
-		name, rank, icon, count, duration, expires = UnitBuff(unit, auraID, filter);
+		name, rank, icon, count, duration, expires, isMine = UnitBuff(unit, auraID, filter);
 		if ( frameID <= maxShownBuffs and icon ) then
 			
 			-- Check if the buff is filtered or not.
@@ -145,7 +145,11 @@ local function Update (self)
 				end
 				
 				-- Set the buff to be big if the buff is cast by the player or his pet
-				largeBuffList[auraID] = PLAYER_UNITS[caster];
+				if isMine then
+					largeBuffList[auraID] = true;
+				else
+					largeBuffList[auraID] = false;
+				end
 				
 				numBuffs = numBuffs + 1;
 				frameID = frameID + 1;
@@ -182,7 +186,7 @@ local function Update (self)
 		frameName = prefix.."Icon"..frameID;
 		frame = _G[frameName];
 		
-		name, rank, icon, count, dispelType, duration, expires = UnitDebuff(unit, auraID, filter);
+		name, rank, icon, count, dispelType, duration, expires, isMine = UnitDebuff(unit, auraID, filter);
 		
 		if ( frameID <= maxShownDebuffs and icon ) then
 			
@@ -237,7 +241,11 @@ local function Update (self)
 				end
 				
 				-- Set the debuff to be big if the buff is cast by the player or his pet
-				largeDebuffList[auraID] = (PLAYER_UNITS[caster]);
+				if isMine then
+					largeDebuffList[auraID] = true;
+				else
+					largeDebuffList[auraID] = false;
+				end
 				
 				numDebuffs = numDebuffs + 1;
 				frameID = frameID + 1;

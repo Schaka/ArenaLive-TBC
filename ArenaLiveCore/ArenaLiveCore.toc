@@ -3,7 +3,7 @@
 ## Notes: Core functions for addons that are based on the ArenaLive framework.
 ## Author: Vadrak
 ## Version: 2.0
-## SavedVariables: ArenaLive_SavedVariables, BuffLibDB
+## SavedVariables: ArenaLive_SavedVariables, BuffLibDB, TrinketTrackerDB
 
 libs\LibStub\LibStub.lua
 libs\DRData-1.0\DRData-1.0.xml

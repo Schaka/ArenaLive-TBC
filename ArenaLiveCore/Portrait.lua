@@ -39,8 +39,7 @@ local function Update (self)
 		self.texture:SetTexCoord(0, 1, 0, 1);
 		self.threeDFrame:Show();
 		self.threeDFrame:SetUnit(unit);
-		--self.threeDFrame:SetPortraitZoom(1);
-		self.threeDFrame:SetModelScale(1);
+		self.threeDFrame:SetCamera(0);
 		
 	elseif ( portraitType == "class" ) then
 		
@@ -70,7 +69,7 @@ local function Update (self)
 			self.texture:SetTexCoord(0, 1, 0, 1);
 			self.threeDFrame:Show();
 			self.threeDFrame:SetUnit(unit);
-			self.threeDFrame:SetModelScale(1);
+			self.threeDFrame:SetCamera(0);
 		end
 		
 	end	
@@ -94,11 +93,11 @@ local function OnShow (self)
 	
 	if ( portraitType == "threeD" ) then
 		self.threeDFrame:SetUnit(unit);
-		self.threeDFrame:SetModelScale(1);
+		self.threeDFrame:SetCamera(0);
 	elseif ( ( portraitType == "class" ) and ( not isPlayer ) ) then
 		-- Fix for NPCs to show the portrait camera correctly.
 		self.threeDFrame:SetUnit(unit);
-		self.threeDFrame:SetModelScale(1);
+		self.threeDFrame:SetCamera(0);
 	end
 
 end

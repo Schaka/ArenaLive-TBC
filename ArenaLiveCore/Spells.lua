@@ -2,10 +2,21 @@ ArenaLiveCore.spellDB = {
 			trinket = 42292, -- SpellID of the PvP-Trinket
 			["racials"] = {
 					-- First Number is the SpellID, 2nd one is the CD and 3rd is the shared CD with the PvP-Trinket. Use 0 if they don't have a shared CD.
-					Human = { 59752, 120, 120 },
+					["Human"] =  {
+						PRIEST = { 25437, 600, 0},
+						WARRIOR = {20600, 180, 0},
+						WARLOCK = {20600, 180, 0},
+						MAGE = {20600, 180, 0},
+						ROGUE = {20600, 180, 0},
+						PALADIN = {20600, 180, 0},
+					},
 					Dwarf = { 20594, 120, 0 },
 					["NightElf"] = {
-						PRIEST = { 2651, 180, 0}
+						PRIEST = { 2651, 180, 0},
+						DRUID = { 20580, 10, 0},
+						WARRIOR = { 20580, 10, 0},
+						HUNTER = { 20580, 10, 0},
+						ROGUE = { 20580, 10, 0},
 					},
 					Gnome = { 20589, 90, 0 },
 					Draenei = { 28880, 180, 0},
@@ -16,8 +27,6 @@ ArenaLiveCore.spellDB = {
 						SHAMAN = { 33697, 120, 0 },
 						MAGE = { 33702, 120, 0 },
 						WARLOCK = { 33702, 120, 0 },
-						DEATHKNIGHT = { 20572, 120, 0 },
-						MONK = { 33697, 120, 0 } -- I guess Monks will get the same racial version as Shamans, since it increases AP+Spell Power. Test this as soon as MoP is out
 					},
 					Scourge = { 7744, 120, 0 },
 					Tauren = { 20549, 120, 0 },
@@ -117,8 +126,7 @@ ArenaLiveCore.spellDB = {
 				[30414] = "stun",			-- Shadowfury
 				[19647] = "silence",		-- Spell lock (Pet-silence)
 				[17928] = "crowdControl",	-- Howl of Terror
-				[118699] = "crowdControl",	-- Fear
-				[115268] = "crowdControl",	-- Mesmerize (Pet-Charm)
+				[5782] = "crowdControl",	-- Fear
 				[6358] = "crowdControl",	-- Seduce (Pet-Charm)
 				[30405] = "usefulDebuffs",	-- Unstable Affliction		
 				
