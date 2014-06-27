@@ -103,7 +103,7 @@ local function SetColour (self)
 		end
 		
 		-- If the unit is a NPC that was tapped by another person, I reflect that in the name colour by colouring it grey.
-		if ( not UnitPlayerControlled(unit) and UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) and not UnitIsTappedByAllThreatList(unit) ) then
+		if ( not UnitPlayerControlled(unit) and UnitIsTapped(unit) and not UnitIsTappedByPlayer(unit) ) then
 			red = 0.5;
 			green = 0.5;
 			blue = 0.5;

@@ -19,6 +19,8 @@ UnitFrame:RegisterEvent("PLAYER_FOCUS_CHANGED");
 UnitFrame:RegisterEvent("PARTY_MEMBERS_CHANGED");
 UnitFrame:RegisterEvent("UNIT_PET");
 UnitFrame:RegisterEvent("UNIT_CONNECTION");
+UnitFrame:RegisterEvent("UNIT_MANA");
+UnitFrame:RegisterEvent("UNIT_HEALTH");
 UnitFrame:RegisterEvent("UNIT_NAME_UPDATE");
 UnitFrame:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT");
 
@@ -605,7 +607,7 @@ function UnitFrame:OnEvent(event, ...)
 				end
 			end
 		end
-	elseif ( event == "UNIT_NAME_UPDATE" ) then
+	elseif ( event == "UNIT_NAME_UPDATE" or event == "UNIT_MANA" or event == "UNIT_HEALTH" ) then
 		local unit = select(1, ...);
 		if ( UnitExists(unit) and UnitFrame.UnitIDTable[unit] ) then
 			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do

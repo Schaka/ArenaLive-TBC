@@ -1,4 +1,4 @@
-## Interface: 20400
+## Interface: 50400
 ## Title: ArenaLive [UnitFrames]
 ## Notes: UnitFrames based on the design of the ArenaLive Spectator UI
 ## Author: Vadrak

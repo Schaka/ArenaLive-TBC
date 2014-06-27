@@ -135,7 +135,7 @@ function StatusBarText:FormatText (text, value, maxValue)
 	
 	if ( strLen > 6 ) then
 		if ( strLen == 7 ) then
-			local decimal = LARGE_NUMBER_SEPERATOR..string.sub(value, 2, 2);
+			local decimal = "."..string.sub(value, 2, 2);
 			current_short = string.sub(value, 1, -7)..decimal..ABBREVIATION_MILLION;
 		else
 			current_short = string.sub(value, 1, -7)..ABBREVIATION_MILLION;
@@ -157,8 +157,8 @@ function StatusBarText:FormatText (text, value, maxValue)
 	
 	if ( strLen > 6 ) then
 		if ( strLen == 7 ) then
-			local decimal = LARGE_NUMBER_SEPERATOR..string.sub(maxValue, 2, 2);
-			maximal_short = string.sub(maxValue, 1, -7)..decimal..ABBREVIATION_MILLION;
+			local decimal = "."..string.sub(maxValue, 2, 2);
+			maximal_short = string.sub(maxValue, 1, -7)..decimal..ABBREVIATION_MILLION
 		else
 			maximal_short = string.sub(maxValue, 1, -7)..ABBREVIATION_MILLION;
 		end
