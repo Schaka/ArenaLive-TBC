@@ -64,10 +64,9 @@ function Update (self)
 	elseif ( nameSpell ) then
 		CastBar:StartCast(self, unit);
 	else
-		self:Hide();
-		self:FinishSpell(false, false);
+		self:FinishSpell(false, false)
+		--self:Hide()
 	end	
-
 end
 
 function OnUpdate (self, elapsed)
@@ -125,8 +124,9 @@ function FinishSpell (self, wasChannel, wasSuccessful)
 		self.lineID = nil;
 		self.channeling = nil;
 		self:SetStatusBarColor(0.0, 1.0, 0.0);
-		--self.fadeOutAnimation:SetStartDelay(0);
-		self:Hide()
+		UIFrameFadeOut(self, 0.3, 1, 0)
+		self.fadeInfo.finishedFunc = function() self:Hide() end
+		--self:Hide()
 	else
 		self.casting = nil;
 		self.lineID = nil;
@@ -234,7 +234,7 @@ function CastBar:StartCast (castBar, ...)
 	end
 	
 	local spellID = select(5, ...);
-	local name, nameSubtext, text, texture, startTime, endTime, isTradeSkill, lineID, notInterruptible = UnitCastingInfo(unit);
+	local name, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitCastingInfo(unit);
 	
 	if (not name or (not castBar.showTradeSkills and isTradeSkill ) ) then
 		castBar:Hide();
@@ -278,7 +278,6 @@ function CastBar:StartCast (castBar, ...)
 			castBar:SetStatusBarColor(1.0, 0.7, 0.0);
 		end
 	end
-	
 	castBar:Show();
 
 end
@@ -342,9 +341,11 @@ function CastBar:FailedOrInterruptedCast (castBar, event, ...)
 				castBar.text:SetText(INTERRUPTED);
 				castBar:SetStatusBarColor(1.0, 0.0, 0.0);
 			end
-		end		
+		end
 		
-		castBar:FinishSpell(false, false);	
+		UIFrameFadeOut(castBar, 0.5, 1, 0)
+		castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
+		--castBar:FinishSpell(false, false);
 	end
 
 end
@@ -354,7 +355,6 @@ function CastBar:SuccessfulCast (castBar, ...)
 	if ( castBar:IsShown() and ( castBar.casting and select(4, ...) == castBar.lineID ) ) then
 		castBar:FinishSpell(false, true);
 	end
-
 end
 
 function CastBar:StartChannel (castBar, ...)
@@ -366,7 +366,7 @@ function CastBar:StartChannel (castBar, ...)
 		return;
 	end
 
-	local name, nameSubtext, text, texture, startTime, endTime, isTradeSkill, notInterruptible = UnitChannelInfo(unit);
+	local name, nameSubtext, text, texture, startTime, endTime, isTradeSkill = UnitChannelInfo(unit);
 
 	if ( not name or (not castBar.showTradeSkills and isTradeSkill)) then
 		return;
@@ -408,7 +408,6 @@ function CastBar:StartChannel (castBar, ...)
 	end
 
 	castBar:Show();
-
 end
 
 function CastBar:UpdateChannel (castBar, ...)
@@ -445,7 +444,9 @@ function CastBar:StopCastOrChannel (castBar, event, ...)
 		if ( event == "UNIT_SPELLCAST_CHANNEL_STOP" ) then
 			castBar:FinishSpell(true, false)
 		else
-			castBar:FinishSpell(false, false)
+			--castBar:FinishSpell(false, false)
+			UIFrameFadeOut(castBar, 0.3, 1, 0)
+			castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
 		end
 	
 	end
