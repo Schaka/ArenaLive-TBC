@@ -576,7 +576,7 @@ function UnitBuff(unitID, index, castable)
 	end
 	
 	
-	if timeLeft ~= nil and unitID ~= "player" then -- can see timer, perfect
+	if timeLeft ~= nil or duration ~=nil then -- can see timer, perfect
 		if unitID ~= "player" then
 			isMine = true
 		else
@@ -614,7 +614,7 @@ function UnitDebuff(unitID, index, castable)
 	end
 	
 	
-	if timeLeft ~= nil then
+	if timeLeft ~= nil or duration ~=nil then
 		if unitID ~= "player" then
 			isMine = true
 		else
