@@ -124,9 +124,9 @@ function FinishSpell (self, wasChannel, wasSuccessful)
 		self.lineID = nil;
 		self.channeling = nil;
 		self:SetStatusBarColor(0.0, 1.0, 0.0);
-		UIFrameFadeOut(self, 0.3, 1, 0)
-		self.fadeInfo.finishedFunc = function() self:Hide() end
-		--self:Hide()
+		--UIFrameFadeOut(self, 0.3, 1, 0)
+		--self.fadeInfo.finishedFunc = function() self:Hide() end
+		self:Hide()
 	else
 		self.casting = nil;
 		self.lineID = nil;
@@ -343,9 +343,9 @@ function CastBar:FailedOrInterruptedCast (castBar, event, ...)
 			end
 		end
 		
-		UIFrameFadeOut(castBar, 0.5, 1, 0)
-		castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
-		--castBar:FinishSpell(false, false);
+		--UIFrameFadeOut(castBar, 0.5, 1, 0)
+		--castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
+		castBar:FinishSpell(false, false);
 	end
 
 end
@@ -444,9 +444,9 @@ function CastBar:StopCastOrChannel (castBar, event, ...)
 		if ( event == "UNIT_SPELLCAST_CHANNEL_STOP" ) then
 			castBar:FinishSpell(true, false)
 		else
-			--castBar:FinishSpell(false, false)
-			UIFrameFadeOut(castBar, 0.3, 1, 0)
-			castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
+			castBar:FinishSpell(false, false)
+			--UIFrameFadeOut(castBar, 0.3, 1, 0)
+			--castBar.fadeInfo.finishedFunc = function() castBar:Hide() end
 		end
 	
 	end

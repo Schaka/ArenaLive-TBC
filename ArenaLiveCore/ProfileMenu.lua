@@ -22,10 +22,11 @@ currentProfile = UnitName("player");
 realm = GetRealmName();
 currentProfile = currentProfile.."-"..realm;
 
-local function CopyProfile(self, dropdown, copyProfileName)
+local function CopyProfile(dropdown, copyProfileName)
 
 	-- Update Dropdown text to new value:
-	UIDropDownMenu_SetText(dropdown, copyProfileName);
+	print(copyProfileName)
+	UIDropDownMenu_SetText(copyProfileName, dropdown);
 
 	-- Copy the database entry and overwrite the old one:
 	for key, value in pairs(ArenaLiveCore.db[dropdown.databaseName][copyProfileName]) do
@@ -73,7 +74,7 @@ local function ProfileCopyDropDownInitFunc(self)
 		if ( key ~= "saveByCharacter" and key ~= currentProfile ) then
 			info.text = key;
 			info.value = key;
-			info.func = CopyProfile;
+			info.func = function() CopyProfile(self, key) end;
 			info.arg1 = self;
 			info.arg2 = key;
 			

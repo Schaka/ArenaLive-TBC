@@ -416,10 +416,10 @@ end
 
 local SO = LibStub("LibSimpleOptions-1.0")
 function TrinketTracker:CreateOptions()
-	local panel = SO.AddOptionsPanel("TrinketTracke", function() end)
+	local panel = SO.AddOptionsPanel("TrinketTracker", function() end)
 	self.panel = panel
-	SO.AddSlashCommand("TrinketTracke","/TrinketTracker")
-	SO.AddSlashCommand("TrinketTracke","/tt")
+	SO.AddSlashCommand("TrinketTracker","/TrinketTracker")
+	SO.AddSlashCommand("TrinketTracker","/tt")
 	local title, subText = panel:MakeTitleTextAndSubText("Trinket Tracker Addon", "General settings")
 	local sync = panel:MakeToggle(
 	     'name', 'Debug',
@@ -808,6 +808,7 @@ function TrinketTracker:TrinketUsed(destGUID, destName, spellName)
 	--log("Trinket Used: "..destName.." for "..spellName)
 	local Icon = ArenaLiveCore:GetHandler("Icon");
 	--sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
+	SendAddonMessage("GladdyTrinketUsed", destGUID)
 	Icon:OnEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS", time(), "SPELL_CAST_SUCCESS", destGUID, destName, nil, destGUID, destName, nil, 42292, "PvPTrinket")
 	
 end

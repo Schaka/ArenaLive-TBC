@@ -118,7 +118,7 @@ local function Disable (self)
 		UnregisterStateDriver(self, "unitsexist");
 		UnregisterStateDriver(self, "ingroup");
 		self:SetScript("OnAttributeChanged", nil);
-		self:UnwrapScript(self, "OnAttributeChanged");
+		--self:UnwrapScript(self, "OnAttributeChanged");
 		self:Hide();
 	else
 		self.SetToggle = "disable";
