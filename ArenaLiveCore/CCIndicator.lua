@@ -76,7 +76,7 @@ function CCIndicator:AddFrame (ccIndicator, texture, cooldown, cooldownText, uni
 
 	-- Set the cooldown of the indicator.
 	Cooldown:AddFrame(cooldown, cooldownText, ccIndicator);
-	
+	cooldown:SetReverse(true);
 	-- Set the basic functions for the indicator.
 	ccIndicator.Update = Update;
 	ccIndicator.Reset = Reset;

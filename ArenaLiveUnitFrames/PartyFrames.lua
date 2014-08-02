@@ -6,7 +6,7 @@ local function PartyFrameOnUpdate(self, elapsed)
 		if ( UnitInRange(self.unit) ) then
 			self:SetAlpha(1);
 		else
-			self:SetAlpha(0.5);
+			self:SetAlpha(0.8);
 		end
 	end
 
