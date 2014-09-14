@@ -366,6 +366,7 @@ function BuffLib:PLAYER_ENTERING_WORLD(...)
 					frame = nil
 				end
 			end
+			self.guids[k] = nil
 		end
 	end
 	
@@ -377,8 +378,8 @@ function BuffLib:PLAYER_ENTERING_WORLD(...)
 	
 	DRLib = LibStub("DRData-1.0")
 	self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+	self:RegisterEvent("CHAT_MSG_ADDON")
 	if BuffLibDB.sync == true then
-		self:RegisterEvent("CHAT_MSG_ADDON")
 		self:RegisterEvent("UNIT_AURA")
 	end
 	
@@ -525,6 +526,7 @@ function BuffLib:UNIT_AURA(unitID, eventType)
 end
 
 function BuffLib:SendSync(message)
+	if not BuffLibDB.sync then return end
 	local inInstance, instanceType = IsInInstance()
 	if instanceType == "pvp" then
 		SendAddonMessage("BuffLib", message, "BATTLEGROUND")
@@ -582,11 +584,9 @@ function UnitBuff(unitID, index, castable)
 		else
 			isMine = false
 		end
-		--[[if BuffLibDB.sync == true then
-			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "RAID")
-			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "BATTLEGROUND")
-		end]]
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
+		return name, rank, icon, count, duration, timeLeft, isMine
+	end
+	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false
@@ -620,11 +620,9 @@ function UnitDebuff(unitID, index, castable)
 		else
 			isMine = false
 		end
-		--[[if BuffLibDB.sync == true then
-			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "RAID")
-			SendAddonMessage("BuffLib", UnitGUID(unitID)..","..name..","..duration..","..timeLeft, "BATTLEGROUND")
-		end]]
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
+	end
+	
+	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false

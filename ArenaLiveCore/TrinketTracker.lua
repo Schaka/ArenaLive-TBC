@@ -290,6 +290,8 @@ local logEvents = {
 }
 local RealmNames = {
 	["EU Arena-tournament.com 2.4.3"] = 1,
+	["TBC-Tournament"] = 1,
+	["TBC Tournament"] = 1,
 }
 local immunityIDs = {
 	[1020] = 1, -- Divine Shield
