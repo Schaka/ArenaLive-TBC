@@ -43,7 +43,8 @@ ArenaLiveCore.spellDB = {
 			
 			["portraitOverlay"] = { -- This table is used to track those spells, that are shown on the Class Portrait's position.
 				-- The order is [spellID] = Priority-Type.
-
+				-- racials
+				[7744] = "defCD",			-- Will of the Forsaken
 							
 				-- Druid
 				[33786] = "defCD",			-- Cyclone (Made that one a def CD, because the enemy is immune to everything during cyclone)
@@ -106,6 +107,7 @@ ArenaLiveCore.spellDB = {
 				[6346] = "usefulBuffs",		-- Fear Ward
 				
 				-- Rogue	
+				[45182] = "defCD",			-- Cheating Death
 				[26669] = "defCD",			-- Evasion
 				[31224] = "defCD",			-- Cloak of Shadows
 				[8643] = "stun", 			-- Kidney Shot
@@ -119,6 +121,7 @@ ArenaLiveCore.spellDB = {
 				[16166] = "offCD",			-- Elemental Mastery
 				[32182] = "usefulBuffs", 	-- Heroism
 				[2825] = "usefulBuffs", 	-- Bloodlust
+				[8178] = "defCD",			-- Grounding Totem
 				
 				-- Warlock
 				[710] = "defCD",			-- Banish (It is marked as def CD for the same reason as Cyclone)
@@ -136,6 +139,7 @@ ArenaLiveCore.spellDB = {
 				[7922] = "stun",			-- Charge Stun
 				[5246] = "crowdControl",	-- Intimidating Shout
 				[676] = "disarm",			-- Disarm
+				[18499] = "disarm",			-- Berserker Rage
 				[23920] = "usefulBuffs",	-- Spell Reflection
 				[12292] = "usefulBuffs", 	-- Death Wish
 				[3411] = "usefulBuffs", 	-- Intervene
