@@ -14,6 +14,7 @@ TODO:
 
 
 Milestones:
+- fix up the menu
 - build raidframes
 - build arena frames which will replace Gladdy/Proximo etc entirely (including buffs and such)
 - take over "/target arena1" functionality from Gladdy/ArenaFrames
