@@ -31,7 +31,7 @@
 							<Frame setAllPoints="true">
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\TargetOfTargetFrame">
+										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\TargetOfTargetFrame">
 											<Size>
 												<AbsDimension x="33" y="52" />
 											</Size>

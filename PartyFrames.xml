@@ -44,7 +44,7 @@
 							<Frame setAllPoints="true">
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\PartyPetFrameBorder">
+										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\PartyPetFrameBorder">
 											<Size>
 												<AbsDimension x="116" y="32" />
 											</Size>											
@@ -71,7 +71,7 @@
 										</FontString>
 									</Layer>
 									<Layer level="OVERLAY" textureSubLevel="1">
-										<Texture name="$parentTargetIndicator" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\PartyPetFrameTargetIndicator" hidden="true">
+										<Texture name="$parentTargetIndicator" file="Interface\AddOns\ArenaLive\Textures\PartyPetFrameTargetIndicator" hidden="true">
 											<Size>
 												<AbsDimension x="116" y="32" />
 											</Size>
@@ -175,7 +175,7 @@
 							<Frame setAllPoints="true">
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\PartyMemberFrameBorder">
+										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\PartyMemberFrameBorder">
 											<Size>
 												<AbsDimension x="181" y="59" />
 											</Size>
@@ -214,7 +214,7 @@
 										</FontString>
 									</Layer>
 									<Layer level="OVERLAY" textureSubLevel="1">
-										<Texture name="$parentTargetIndicator" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\smallFrameTargetIndicator" hidden="true">
+										<Texture name="$parentTargetIndicator" file="Interface\AddOns\ArenaLive\Textures\smallFrameTargetIndicator" hidden="true">
 											<Size>
 												<AbsDimension x="179" y="57" />
 											</Size>

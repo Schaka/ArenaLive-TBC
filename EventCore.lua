@@ -66,7 +66,7 @@ function ArenaLiveCore:OnEvent(event, ...)
 		end
 	end
 	
-	if ( event == "ADDON_LOADED" and arg1 == addonName ) then
+	if ( event == "ADDON_LOADED" and arg1 == addonName or arg1 == "ArenaLive" ) then
 		if ( ArenaLive_SavedVariables ) then
 			ArenaLiveCore.db = ArenaLive_SavedVariables;
 		end

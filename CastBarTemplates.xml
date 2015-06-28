@@ -23,7 +23,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarLong" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\CastBarLong" parentKey="border">
 					<Size>
 						<AbsDimension x="198" y="24" />
 					</Size>
@@ -36,7 +36,7 @@
 					</Anchors>
 					<TexCoords left="0.1171875" right="0.890625" top="0.15625" bottom="0.90625"/>
 				</Texture>
-				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarLongShieldedGlow" alphaMode="ADD" hidden="true">
+				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLive\Textures\CastBarLongShieldedGlow" alphaMode="ADD" hidden="true">
 					<Size>
 						<AbsDimension x="208" y="33" />			
 					</Size>
@@ -92,7 +92,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarLong" parentKey="border">
+				<Texture name="$parentBorder" file="IInterface\AddOns\ArenaLive\Textures\CastBarLong" parentKey="border">
 					<Size>
 						<AbsDimension x="198" y="24" />
 					</Size>
@@ -105,7 +105,7 @@
 					</Anchors>
 					<TexCoords left="0.890625" right="0.1171875" top="0.15625" bottom="0.90625"/>
 				</Texture>
-				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarLongShieldedGlow" alphaMode="ADD" hidden="true">
+				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLive\Textures\CastBarLongShieldedGlow" alphaMode="ADD" hidden="true">
 					<Size>
 						<AbsDimension x="208" y="33" />			
 					</Size>
@@ -160,7 +160,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarShort" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\CastBarShort" parentKey="border">
 					<Size>
 						<AbsDimension x="105" y="29" />
 					</Size>
@@ -173,7 +173,7 @@
 					</Anchors>
 					<TexCoords left="0.0859375" right="0.90625" top="0.03125" bottom="0.9375"/>
 				</Texture>
-				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarShortShieldedGlow" hidden="true" alphaMode="ADD">
+				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLive\Textures\CastBarShortShieldedGlow" hidden="true" alphaMode="ADD">
 					<Size>
 						<AbsDimension x="112" y="36" />			
 					</Size>
@@ -228,7 +228,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarShort" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\CastBarShort" parentKey="border">
 					<Size>
 						<AbsDimension x="105" y="29" />
 					</Size>
@@ -241,7 +241,7 @@
 					</Anchors>
 					<TexCoords left="0.90625" right="0.0859375" top="0.03125" bottom="0.9375"/>
 				</Texture>
-				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\CastBarShortShieldedGlow" hidden="true" alphaMode="ADD">
+				<Texture name="$parentBorderShieldGlow" file="Interface\AddOns\ArenaLive\Textures\CastBarShortShieldedGlow" hidden="true" alphaMode="ADD">
 					<Size>
 						<AbsDimension x="112" y="36" />			
 					</Size>

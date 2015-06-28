@@ -281,7 +281,7 @@ local framesToHide = {
 
 function ArenaLiveUnitFrames:OnEvent(event, ...)
 	local arg1 = ...;
-	if ( event == "ADDON_LOADED" and arg1 == addonName ) then
+	if ( event == "ADDON_LOADED" and arg1 == addonName or arg1 == "ArenaLive" ) then
 		if ( not ArenaLiveCore:DatabaseExists(addonName) ) then
 			ArenaLiveCore:AddDatabase(addonName, ArenaLiveUnitFrames.DEFAULTS, true);
 		else
@@ -319,6 +319,7 @@ function ArenaLiveUnitFrames:OnEvent(event, ...)
 		ALUF_Options:Initialise();
 		
 		-- Initialise PlayerFrame (toggled as soon as "PLAYER_LOGIN" fires. Otherwise it would bug the player frame)
+		
 		ALUF_PlayerFrame:Initialise();
 		
 		-- Initialise PetFrame

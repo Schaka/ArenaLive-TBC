@@ -6,10 +6,10 @@
 	<Frame name="ArenaLiveUnitFrames" setAllPoints="true" parent="UIParent">
 	</Frame>	
 	
-	<Script File="localisation.lua" />
-	<Script File="localisationdeDE.lua" />
-	<Script File="localisationkoKR.lua" />
-	<Script File="localisationzhCN.lua" />
+	<Script File="localisation_uf.lua" />
+	<Script File="localisationdeDE_uf.lua" />
+	<Script File="localisationkoKR_uf.lua" />
+	<Script File="localisationzhCN_uf.lua" />
 	
 	<Script File="ArenaLiveUnitFrames.lua" />
 	<Include File="CastBarTemplates.xml" />

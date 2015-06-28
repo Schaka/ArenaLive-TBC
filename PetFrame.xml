@@ -16,7 +16,7 @@
 		
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentFlash" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\PetFrameFlash" alphaMode="ADD" hidden="true">
+				<Texture name="$parentFlash" file="Interface\AddOns\ArenaLive\Textures\PetFrameFlash" alphaMode="ADD" hidden="true">
 					<Size>
 						<AbsDimension x="158" y="59" />
 					</Size>
@@ -63,7 +63,7 @@
 							<Frame setAllPoints="true">
 								<Layers>
 									<Layer level="BACKGROUND">
-										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\PetFrame">
+										<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\PetFrame">
 											<Size>
 												<AbsDimension x="158" y="59" />
 											</Size>

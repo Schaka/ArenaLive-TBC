@@ -1,7 +1,7 @@
 ## Interface: 20400
 ## Title: ArenaLive [Core]
-## Notes: Core functions for addons that are based on the ArenaLive framework.
-## Author: Vadrak
+## Notes: ArenaLive TBC
+## Author: Vadrak, Schaka
 ## Version: 2.0
 ## SavedVariables: ArenaLive_SavedVariables, BuffLibDB, TrinketTrackerDB
 
@@ -10,3 +10,4 @@ libs\DRData-1.0\DRData-1.0.xml
 libs\LibSimpleOptions-1.0\lib.xml
 
 ArenaLiveCore.xml
+ArenaLiveUnitFrames.xml

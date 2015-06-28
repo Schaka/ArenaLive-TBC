@@ -2,7 +2,6 @@ local addonName = "ArenaLiveUnitFrames";
 
 
 function ALUF_PlayerFrame:Initialise()
-		
 	local prefix = self:GetName();
 	local frameType = "PlayerFrame";
 	local onRightClick = "togglemenu";

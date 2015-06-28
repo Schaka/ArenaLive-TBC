@@ -7,12 +7,12 @@
 		</Size>
 		<Layers>
 			<Layer level="ARTWORK">
-				<Texture name="$parentTexture" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints">
+				<Texture name="$parentTexture" file="Interface\AddOns\ArenaLive\Textures\ComboPoints">
 					<TexCoords left="0.5625" right="0.8125" top="0.296875" bottom="0.421875"/>
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentGlow" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints" alphaMode="ADD">
+				<Texture name="$parentGlow" file="Interface\AddOns\ArenaLive\Textures\ComboPoints" alphaMode="ADD">
 					<Size>
 						<AbsDimension x="16" y="16" />
 					</Size>
@@ -36,7 +36,7 @@
 		</Size>
 		<Layers>
 			<Layer level="BACKGROUND">
-				<Texture name="$parentBackground" file="Interface\AddOns\ArenaLiveUnitFrames\Textures\ComboPoints">
+				<Texture name="$parentBackground" file="Interface\AddOns\ArenaLive\Textures\ComboPoints">
 					<TexCoords left="0" right="0.375" top="0.03125" bottom="0.96875"/>
 				</Texture>
 			</Layer>
