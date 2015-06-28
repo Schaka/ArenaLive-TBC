@@ -22,12 +22,37 @@
 					<TexCoords left="0.4375" right="0.9375" top="0" bottom="0.25"/>
 				</Texture>
 			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHighlight" file="Interface\ComboFrame\ComboPoint">
+					<Size>
+						<AbsDimension x="8" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="2" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.375" right="0.5625" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<Texture name="$parentShine" file="Interface\ComboFrame\ComboPoint" alphaMode="ADD">
+					<Size>
+						<AbsDimension x="14" y="16"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="0" y="4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0.5625" right="1" top="0" bottom="1"/>
+				</Texture>
+			</Layer>
 		</Layers>
-		<Animations>
-			<AnimationGroup name="$parentFadeIn" looping="NONE">
-				<Alpha duration="0.5" smoothing="IN" change="1" order="1" />
-			</AnimationGroup>
-		</Animations>
 	</Frame>
 	
 	<Frame name="ALUF_ComboPointFrameTemplate" frameStrata="HIGH" hidden="true" virtual="true">

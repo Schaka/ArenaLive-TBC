@@ -19,8 +19,22 @@ local UnitFrame = ArenaLiveCore:GetHandler("UnitFrame");
 
 -- Register the handler for all needed events.
 ComboPoints:RegisterEvent("PLAYER_TARGET_CHANGED");
-ComboPoints:RegisterEvent("UNIT_COMBO_POINTS");
+ComboPoints:RegisterEvent("PLAYER_COMBO_POINTS");
 
+local function ComboPointShineFadeIn(frame)
+	-- Fade in the shine and then fade it out with the ComboPointShineFadeOut function
+	local fadeInfo = {};
+	fadeInfo.mode = "IN";
+	fadeInfo.timeToFade = COMBOFRAME_SHINE_FADE_IN;
+	fadeInfo.finishedFunc = ComboPointShineFadeOut;
+	fadeInfo.finishedArg1 = frame:GetName();
+	UIFrameFade(frame, fadeInfo);
+end
+
+--hack since a frame can't have a reference to itself in it
+local function ComboPointShineFadeOut(frameName)
+	UIFrameFadeOut(getglobal(frameName), COMBOFRAME_SHINE_FADE_OUT);
+end
 
 
 -- *** FRAME FUNCTIONS ***
@@ -33,31 +47,37 @@ local function Update (self)
 	end
 	
 	local comboPoints = GetComboPoints("player", unit);
-	local comboPointAnimation;
+	local comboPointShine, comboPointHighlight;
 	
 	if ( comboPoints > 0 ) then
 		if ( not self:IsShown() ) then
 			self:Show();
+			UIFrameFadeIn(self, COMBOFRAME_FADE_IN);
 		end
 		
+		local fadeInfo = {}
 		for i = 1, 5 do
 			local comboPoint = self["comboPoint"..i];
 			local comboPointName = comboPoint:GetName();
 		
 			if ( comboPointName ) then
-			
-				-- Always name your combo point show-animation "$parentFadeIn", if you want to create a custom one!
-				comboPointAnimation = _G[comboPointName.."FadeIn"];
+				comboPointShine = _G[comboPointName.."Shine"];
+				comboPointHighlight = _G[comboPointName.."Highlight"];				
 			end
 			
 			if ( i <= comboPoints ) then
 				comboPoint:Show();
 				
-				if ( ( comboPointAnimation ) and (i > self.lastNumComboPoints ) ) then
-					comboPoint:SetAlpha(0);
-					comboPointAnimation:Play();
+				if ( comboPointShine and ( i > self.lastNumComboPoints )  ) then
+					fadeInfo.mode = "IN";
+					fadeInfo.timeToFade = COMBOFRAME_HIGHLIGHT_FADE_IN;
+					fadeInfo.finishedFunc = ComboPointShineFadeIn;
+					fadeInfo.finishedArg1 = comboPointShine;
+					UIFrameFade(comboPointHighlight, fadeInfo);
 				end
 			else
+				comboPointHighlight:SetAlpha(0);
+				comboPointShine:SetAlpha(0);
 				comboPoint:Hide();	
 			end
 		end
@@ -67,11 +87,6 @@ local function Update (self)
 	
 	self.lastNumComboPoints = comboPoints;
 
-end
-
-local function OnAnimFinished(animation)
-	local frame = animation:GetParent();
-	frame:SetAlpha(1);
 end
 
 local function Reset (self)
@@ -94,24 +109,10 @@ function ComboPoints:AddFrame (comboPointFrame, comboPoint1, comboPoint2, comboP
 	
 	-- Create references for combo points
 	comboPointFrame.comboPoint1 = comboPoint1;
-	--comboPoint1.animation = _G[comboPoint1:GetName().."FadeIn"];
-	--comboPoint1.animation:SetScript("OnFinished", OnAnimFinished);
-	
 	comboPointFrame.comboPoint2 = comboPoint2;
-	--comboPoint2.animation = _G[comboPoint2:GetName().."FadeIn"];
-	--comboPoint2.animation:SetScript("OnFinished", OnAnimFinished);
-	
 	comboPointFrame.comboPoint3 = comboPoint3;
-	--comboPoint3.animation = _G[comboPoint3:GetName().."FadeIn"];
-	--comboPoint3.animation:SetScript("OnFinished", OnAnimFinished);
-	
 	comboPointFrame.comboPoint4 = comboPoint4;
-	--comboPoint4.animation = _G[comboPoint4:GetName().."FadeIn"];
-	--comboPoint4.animation:SetScript("OnFinished", OnAnimFinished);
-	
 	comboPointFrame.comboPoint5 = comboPoint5;
-	--comboPoint5.animation = _G[comboPoint5:GetName().."FadeIn"];
-	--comboPoint5.animation:SetScript("OnFinished", OnAnimFinished);
 	
 	comboPointFrame.lastNumComboPoints = 0;
 	unitFrame.handlerList.comboPoints = true;
@@ -131,7 +132,7 @@ end
 local affectedFrame;
 function ComboPoints:OnEvent (event, ...)
 
-	if ( event == "PLAYER_TARGET_CHANGED" or event == "UNIT_COMBO_POINTS" ) then
+	if ( event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_COMBO_POINTS") then
 		local unit = "target";
 		if ( UnitFrame.UnitIDTable[unit] ) then
 			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
