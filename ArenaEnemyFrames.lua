@@ -27,7 +27,7 @@ local function InitialiseArenaFrame(self)
 	ArenaLiveCore:AddFrame(powerBar, "PowerBar", self, true);
 	ArenaLiveCore:AddFrame(_G[prefix.."HealthBarText"], "StatusBarText", "HealthBarText", "DEAD_OR_GHOST", nil, true, self);
 	ArenaLiveCore:AddFrame(_G[prefix.."PowerBarText"], "StatusBarText", "PowerBarText", nil, true, nil, self);
-	ArenaLiveCore:AddFrame(_G[prefix.."CastBar"], "CastBar", _G[prefix.."CastBarBorder"], _G[prefix.."CastBarBorderShieldGlow"], _G[prefix.."CastBarIcon"], _G[prefix.."CastBarText"], _G[prefix.."CastBarAnimationGroup"], _G[prefix.."CastBarAnimationGroupFadeOutAnimation"], true, true, self);
+	ArenaLiveCore:AddFrame(_G[prefix.."CastBar"], "CastBar", _G[prefix.."CastBarBorder"], _G[prefix.."CastBarBorderShieldGlow"], _G[prefix.."CastBarIcon"], _G[prefix.."CastBarText"], true, true, self);
 	ArenaLiveCore:AddFrame (_G[prefix.."DrTracker"], "DRTracker", 3, "ArenaLive_DrTrackerIconTemplate", self)
 
 end

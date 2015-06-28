@@ -92,7 +92,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<Texture name="$parentBorder" file="IInterface\AddOns\ArenaLive\Textures\CastBarLong" parentKey="border">
+				<Texture name="$parentBorder" file="Interface\AddOns\ArenaLive\Textures\CastBarLong" parentKey="border">
 					<Size>
 						<AbsDimension x="198" y="24" />
 					</Size>
@@ -123,19 +123,6 @@
 		
 		<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
 		<BarColor r="1.0" g="0.7" b="0.0"/>
-		<Animations>
-			<AnimationGroup name="$parentAnimationGroup">
-				<Alpha name="$parentFadeOutAnimation" change="-1" duration="0.5" startDelay="0" order="1" />
-				<Scripts>
-					<OnStop>
-						self:GetParent():Hide();
-					</OnStop>
-					<OnFinished>
-						self:GetParent():Hide();
-					</OnFinished>
-				</Scripts>
-			</AnimationGroup>
-		</Animations>
 	</StatusBar>
 
 	<StatusBar name="ALUF_ShortCastBarTemplate" drawLayer="BORDER" hidden="true" virtual="true">

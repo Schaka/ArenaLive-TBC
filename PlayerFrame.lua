@@ -29,7 +29,7 @@ function ALUF_PlayerFrame:Initialise()
 	ArenaLiveCore:AddFrame(icon1, "Icon", _G[prefix.."Icon1Texture"], _G[prefix.."Icon1Cooldown"], _G[prefix.."Icon1CooldownText"], self);
 	ArenaLiveCore:AddFrame(icon2, "Icon", _G[prefix.."Icon2Texture"], _G[prefix.."Icon2Cooldown"], _G[prefix.."Icon2CooldownText"], self);
 	ArenaLiveCore:AddFrame(ccIndicator, "CCIndicator", _G[prefix.."PortraitOverlayIcon"], _G[prefix.."PortraitOverlayCooldown"], _G[prefix.."PortraitOverlayCooldownText"], self);
-	ArenaLiveCore:AddFrame(_G[prefix.."CastBar"], "CastBar", _G[prefix.."CastBarBorder"], _G[prefix.."CastBarBorderShieldGlow"], _G[prefix.."CastBarIcon"], _G[prefix.."CastBarText"], _G[prefix.."CastBarAnimationGroup"], _G[prefix.."CastBarAnimationGroupFadeOutAnimation"], true, true, self);
+	ArenaLiveCore:AddFrame(_G[prefix.."CastBar"], "CastBar", _G[prefix.."CastBarBorder"], _G[prefix.."CastBarBorderShieldGlow"], _G[prefix.."CastBarIcon"], _G[prefix.."CastBarText"], true, true, self);
 	ArenaLiveCore:AddFrame (_G[prefix.."AuraFrame"], "Aura", _G[prefix.."AuraFrameBuffFrame"], _G[prefix.."AuraFrameDebuffFrame"], "ArenaLive_BuffTemplate", "ArenaLive_DebuffTemplate", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."PVPIcon"], "PvPIcon", 24, 24, "HORIZONTAL", self);
 	ArenaLiveCore:AddFrame(_G[prefix.."LeaderIcon"], "LeaderIcon", 16, 16, "HORIZONTAL", self);

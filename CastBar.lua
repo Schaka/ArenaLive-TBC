@@ -2,7 +2,7 @@
 Created by: Vadrak
 Creation Date: 11.06.2013
 Last Update: "
-This file contains all relevant functions for CC Indicators and their behaviour.
+This file contains all relevant functions for Castbars and their behaviour.
 ]]--
 
 -- TODO: Make colour for shield changable.
@@ -141,7 +141,7 @@ function FinishSpell (self, wasChannel, wasSuccessful)
 end
 
 -- *** HANDLER FUNCTIONS ***
-function CastBar:AddFrame (castBar, castBarBorder, castBarBorderShield, castBarIcon, castBarText, castBarAnimationGroup, castBarFadeOutAnimation, showTradeSkills, showShield, unitFrame)
+function CastBar:AddFrame (castBar, castBarBorder, castBarBorderShield, castBarIcon, castBarText, showTradeSkills, showShield, unitFrame)
 
 	-- Create a reference for the castbar inside the unit frame and vice versa.
 	unitFrame.castBar = castBar;
@@ -152,8 +152,6 @@ function CastBar:AddFrame (castBar, castBarBorder, castBarBorderShield, castBarI
 	castBar.borderShield = castBarBorderShield;
 	castBar.icon = castBarIcon;
 	castBar.text = castBarText;
-	castBar.animationGroup = castBarAnimationGroup;
-	castBar.fadeOutAnimation = castBarFadeOutAnimation;
 	castBar.showTradeSkills = showTradeSkills;
 	castBar.showShield = showShield;
 	castBar.value = 0;
