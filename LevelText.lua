@@ -54,9 +54,8 @@ local function Update (self)
 	if ( text == "??" ) then
 		red, green, blue = 1, 0, 0
 	elseif ( UnitCanAttack("player", unit) ) then
-		--[[local colour =  GetQuestDifficultyColor(level);
-		red, green, blue = colour.r, colour.g, colour.b;]]
-		red, green, blue = 1, 0, 0
+		local colour =  GetDifficultyColor(level);
+		red, green, blue = colour.r, colour.g, colour.b;
 	else
 		red, green, blue = 1.0, 0.82, 0.0
 	end
