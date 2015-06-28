@@ -34,12 +34,14 @@ local function Update (self)
 	local portraitType = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/Portrait/Type");
 	
 	if ( portraitType == "threeD" ) then
-		
-		self.texture:SetTexture(0, 0, 0, 1);
-		self.texture:SetTexCoord(0, 1, 0, 1);
-		self.threeDFrame:Show();
-		self.threeDFrame:SetUnit(unit);
-		self.threeDFrame:SetCamera(0);
+		if(self.threeDFrame.lastGUID ~= UnitGUID(unit)) then
+			self.threeDFrame.lastGUID = UnitGUID(unit)
+			self.threeDFrame:SetUnit(unit);
+			self.threeDFrame:SetCamera(0);
+			self.texture:SetTexture(0, 0, 0, 1);
+			self.texture:SetTexCoord(0, 1, 0, 1);
+			self.threeDFrame:Show();
+		end
 		
 	elseif ( portraitType == "class" ) then
 		
