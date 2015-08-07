@@ -16,12 +16,12 @@ local UnitFrame = ArenaLiveCore:GetHandler("UnitFrame");
 
 -- Register the handler for all needed events.
 Portrait:RegisterEvent("UNIT_MODEL_CHANGED");
+Portrait:RegisterEvent("PLAYER_TARGET_CHANGED");
 
 
 
 -- *** FRAME FUNCTIONS ***
-local function Update (self)
-
+local function Update (self, event)
 	local unit = self.unitFrame.unit;
 	
 	if ( not unit ) then
@@ -34,8 +34,7 @@ local function Update (self)
 	local portraitType = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/Portrait/Type");
 	
 	if ( portraitType == "threeD" ) then
-		if(self.threeDFrame.lastGUID ~= UnitGUID(unit)) then
-			self.threeDFrame.lastGUID = UnitGUID(unit)
+		if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" ) then
 			self.threeDFrame:SetUnit(unit);
 			self.threeDFrame:SetCamera(0);
 			self.texture:SetTexture(0, 0, 0, 1);
@@ -78,11 +77,10 @@ local function Update (self)
 
 end
 
-local function OnShow (self)
-
+local function OnShow (self, event)
 	local portraitType = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/Portrait/Type");
 	local unit = self.unitFrame.unit;
-
+	
 	if ( not unit ) then
 		self.threeDFrame:Hide();
 		self.texture:SetTexture();
@@ -90,16 +88,18 @@ local function OnShow (self)
 		return;
 	end
 	
+	
 	local isPlayer = UnitIsPlayer(unit);
 	local _, race = UnitRace(unit);
-	
 	if ( portraitType == "threeD" ) then
 		self.threeDFrame:SetUnit(unit);
 		self.threeDFrame:SetCamera(0);
+		self.threeDFrame:Show();
 	elseif ( ( portraitType == "class" ) and ( not isPlayer ) ) then
 		-- Fix for NPCs to show the portrait camera correctly.
 		self.threeDFrame:SetUnit(unit);
 		self.threeDFrame:SetCamera(0);
+		self.threeDFrame:Show();
 	end
 
 end
@@ -140,17 +140,17 @@ end
 ]]--
 local affectedFrame;
 function Portrait:OnEvent (event, ...)
-
 	local unit = ...;
-	
-	if ( event == "UNIT_MODEL_CHANGED" ) then
+	if( event == "PLAYER_TARGET_CHANGED" ) then 
+		unit = "target";
+	end	
+	if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" ) then
 		if ( UnitFrame.UnitIDTable[unit] ) then
 			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
 				if ( value and UnitFrame.UnitFrameTable[key] ) then
 					affectedFrame = UnitFrame.UnitFrameTable[key];
-					
 					if ( affectedFrame.portrait ) then
-						affectedFrame.portrait:Update();
+						affectedFrame.portrait:Update(event);
 					end
 				end
 			end
