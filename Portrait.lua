@@ -17,6 +17,7 @@ local UnitFrame = ArenaLiveCore:GetHandler("UnitFrame");
 -- Register the handler for all needed events.
 Portrait:RegisterEvent("UNIT_MODEL_CHANGED");
 Portrait:RegisterEvent("PLAYER_TARGET_CHANGED");
+Portrait:RegisterEvent("PLAYER_FOCUS_CHANGED");
 
 
 
@@ -34,7 +35,7 @@ local function Update (self, event)
 	local portraitType = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/Portrait/Type");
 	
 	if ( portraitType == "threeD" ) then
-		if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" ) then
+		if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" ) then
 			self.threeDFrame:SetUnit(unit);
 			self.threeDFrame:SetCamera(0);
 			self.texture:SetTexture(0, 0, 0, 1);
@@ -144,7 +145,11 @@ function Portrait:OnEvent (event, ...)
 	if( event == "PLAYER_TARGET_CHANGED" ) then 
 		unit = "target";
 	end	
-	if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" ) then
+	if( event == "PLAYER_FOCUS_CHANGED" ) then 
+		unit = "focus";
+	end	
+	
+	if ( event == "UNIT_MODEL_CHANGED" or event == "PLAYER_TARGET_CHANGED" or event == "PLAYER_FOCUS_CHANGED" ) then
 		if ( UnitFrame.UnitIDTable[unit] ) then
 			for key, value in pairs(UnitFrame.UnitIDTable[unit]) do
 				if ( value and UnitFrame.UnitFrameTable[key] ) then
