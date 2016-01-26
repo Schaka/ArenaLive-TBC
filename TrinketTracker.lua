@@ -763,52 +763,6 @@ function TrinketTracker:HasTrinket(categoryType, destGUID, destName, spellName, 
 end
 
 function TrinketTracker:TrinketUsed(destGUID, destName, spellName)
-	if getglobal("GladdyFrame") and destName then
-		for i=1,5 do
-			local button = getglobal("GladdyButtonFrame"..i)
-			if button and button.guid == destGUID then
-				if self.cdFrames[i] == nil then
-					self.cdFrames[i] = CreateFrame("Cooldown", "TrinketTimer"..i, button)
-					self.cdFrames[i]:SetWidth(40)
-					self.cdFrames[i]:SetHeight(40)
-					self.cdFrames[i]:SetPoint("LEFT", button, "RIGHT")
-					self.cdFrames[i]:SetCooldown(GetTime(), 120)
-				else
-					self.cdFrames[i]:SetCooldown(GetTime(), 120)
-				end
-			end	
-		end
-	--[[else
-		if not self.trinketFrames[destName] then
-			local frame 
-			if map_length(self.trinketFrames) == 0 then
-				frame = CreateFrame("Cooldown", "PvPTrinket_1", UIParent)
-				frame.font=frame:CreateFontString("TrinketFont_1")
-				frame:SetPoint("CENTER", 300, 50)
-			else
-				frame = CreateFrame("Cooldown", "PvPTrinket_"..map_length(self.trinketFrames)+1, UIParent)
-				frame.font=frame:CreateFontString("TrinketFont_"..map_length(self.trinketFrames)+1)
-				if (map_length(self.trinketFrames))%3 == 0 then
-					frame:SetPoint("TOPLEFT", "PvPTrinket_"..map_length(self.trinketFrames)-2, "BOTTOMLEFT")
-				else
-					frame:SetPoint("TOPLEFT", "TrinketFont_"..map_length(self.trinketFrames), "TOPRIGHT")
-				end
-			end
-			frame:SetHeight(30)
-			frame:SetWidth(30)
-			frame.texture = frame:CreateTexture("TrinketTexture", "BACKGROUND")
-			frame.texture:SetTexture("Interface\\Icons\\inv_jewelry_trinketpvp_01")
-			frame.texture:SetAllPoints(frame)
-			frame.font:SetFontObject("GameFontNormal", 15)
-			frame.font:SetText(destName)
-			frame.font:SetPoint("TOPLEFT", frame, "TOPRIGHT")
-			frame:SetCooldown(GetTime(), 120)
-			self.trinketFrames[destName] = frame
-		else
-			self.trinketFrames[destName]:SetCooldown(GetTime(), 120)
-		end]]	
-	end
-	--log("Trinket Used: "..destName.." for "..spellName)
 	local Icon = ArenaLiveCore:GetHandler("Icon");
 	--sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
 	SendAddonMessage("GladdyTrinketUsed", destGUID)
