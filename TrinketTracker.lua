@@ -765,7 +765,6 @@ end
 function TrinketTracker:TrinketUsed(destGUID, destName, spellName)
 	local Icon = ArenaLiveCore:GetHandler("Icon");
 	--sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
-	SendAddonMessage("GladdyTrinketUsed", destGUID)
 	Icon:OnEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS", time(), "SPELL_CAST_SUCCESS", destGUID, destName, nil, destGUID, destName, nil, 42292, "PvPTrinket")
 	
 end
