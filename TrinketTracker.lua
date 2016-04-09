@@ -766,13 +766,6 @@ function TrinketTracker:TrinketUsed(destGUID, destName, spellName)
 	local Icon = ArenaLiveCore:GetHandler("Icon");
 	--sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellNum,spellName = ...;
 	Icon:OnEvent("COMBAT_LOG_EVENT_UNFILTERED_SPELL_CAST_SUCCESS", time(), "SPELL_CAST_SUCCESS", destGUID, destName, nil, destGUID, destName, nil, 42292, "PvPTrinket")
-	
-end
-
-function TrinketTracker:Test()
-	for i=1,15 do
-		TrinketTracker:TrinketUsed("someID", "name"..i)
-	end
 end
 
 function TrinketTracker:CheckDispel(destGUID, spellTimer, searchName)

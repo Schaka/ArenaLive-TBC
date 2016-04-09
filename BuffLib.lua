@@ -1,4 +1,4 @@
-local abilityIDs = { 
+local BuffLibabilityIDs = { 
 -- MISC & Racials ---------------------
 		[11196] = 60, -- Recently Bandaged
 		[44055] = 15, -- Battlemaster (1750 HP)
@@ -85,6 +85,7 @@ local abilityIDs = {
         [12323] = 6, -- Piercing Howl
         [25274] = 3, -- Intercept Stun
         [5530] = 3, -- Mace Stun Effect
+        [34510] = 5, -- Stormherald Stun
        
 -- Defensive
         [3411] = 10, -- Intervene
@@ -114,12 +115,17 @@ local abilityIDs = {
         [15487] = 5, -- Silence
         [34917] = 15, -- Vampiric Touch
         [44047] = 2, -- Chastise
+        [15334] = 15, -- Shadow Weaving
        
 -- Defensive
         [27607] = 30, -- Power Word: Shield
         [6788] = 13, -- Weakened Soul
         [33206] = 8, -- Pain Suppression
         [6346] = 180, -- Fear Ward
+        [27828] = 10, -- Focused Casting
+        [33146] = 6, -- Blessed Resilience
+        [27818] = 10, -- Blessed Recovery
+        [45244] = 8, -- Focused Will
  
 -- Healing
         [33076] = 30, -- Prayer of Mending (needs a hack because duration is 10 after first jump)
@@ -151,6 +157,7 @@ local abilityIDs = {
 		[18469] = 4, -- Counterspell - Silenced
 		[33043] = 4, -- Dragon's Breath
 		[33395] = 8, -- Freeze (Watelemental)
+		[12579] = 15, -- Winter's Chill
        
 -- Defensive
         [45438] = 10, -- Ice Block
@@ -213,6 +220,7 @@ local abilityIDs = {
         [5116] = 4, -- Concussive Shot
         [19185] = 4, -- Entrapment
 };
+
 BuffLibDebug = 0
 BuffLibDB = BuffLibDB or { sync = true}
 local function log(msg)
@@ -225,6 +233,21 @@ end -- alias for convenience
 
 local DR_RESET_TIME = 15
 local DRLib
+
+local logDelay = 0.05
+
+local applyEvents = {
+	"SPELL_AURA_APPLIED",
+	"SPELL_AURA_REFRESH",
+	"SPELL_AURA_APPLIED_DOSE",
+	"SPELL_CAST_SUCCESS",
+}
+
+local removeEvents = {
+	"SPELL_AURA_REMOVE",
+	"SPELL_AURA_DISPEL",
+	"SPELL_AURA_STOLEN",
+}
 
 local _UnitBuff = UnitBuff
 local _UnitDebuff = UnitDebuff
@@ -265,11 +288,13 @@ function BuffLib:InitDR(destGUID, spellID, event)
 		elseif tracked and tracked.reset <= GetTime() then -- reset DR because timer ran out
 			tracked.diminished = 1.0
 			tracked.reset = 99999999
-			--log(DR_RESET_TIME.." seconds DR timer ran out, resetting "..drCat)
+			tracked.lastDR = 0
+			log(DR_RESET_TIME.." seconds DR timer ran out, resetting "..drCat)
 		--AURA_REMOVE - start timer and DR duration (maybe also on AURA_REFRESH?)
 		elseif event == "SPELL_AURA_REMOVED" then
 			tracked.reset = GetTime() + DR_RESET_TIME
-			--log("start "..DR_RESET_TIME.." seconds DR timer")
+			tracked.lastDR = 0
+			log("start "..DR_RESET_TIME.." seconds DR timer "..GetSpellInfo(spellID))
 		end	
 	end
 	
@@ -281,14 +306,11 @@ function BuffLib:NextDR(destGUID, spellID, event)
 	if self.guids[destGUID] then
 		drCat = DRLib:GetSpellCategory(spellID)
 		tracked = self.guids[destGUID][drCat]
-		if tracked then
-			diminished = tracked.diminished
-		end
 	end
 	if tracked and tracked.lastDR+0.5 <= GetTime() then
 		tracked.diminished = DRLib:NextDR(tracked.diminished)
 		tracked.lastDR = GetTime()
-		--log("next DR: "..GetSpellInfo(spellID).. "  "..drCat)
+		log("next DR: "..GetSpellInfo(spellID).. "  "..drCat)
 	end
 end
 
@@ -317,7 +339,7 @@ function BuffLib:CreateFrames(destGUID, spellName, spellID)
 		self.guids[destGUID][spellName].startTime = GetTime()
 		self.guids[destGUID][spellName].endTime = self.abilities[spellName]*diminished
 		
-		log(spellName.."  "..self.abilities[spellName]*diminished.." CreateFrames")
+		--log(spellName.."  "..self.abilities[spellName]*diminished.." CreateFrames")
 	end
 end
 
@@ -337,7 +359,7 @@ function BuffLib:UpdateFrames(destGUID, spellName, spellID)
 		self.guids[destGUID][spellName].startTime = GetTime()
 		self.guids[destGUID][spellName].endTime = self.abilities[spellName]*diminished
 		
-		log(spellName.."  "..self.abilities[spellName]*diminished.." UpdateFrames")
+		--log(spellName.."  "..self.abilities[spellName]*diminished.." UpdateFrames")
 	end
 end
 
@@ -360,19 +382,19 @@ function BuffLib:PLAYER_ENTERING_WORLD(...)
 	-- clear frames, just to be sure
 	if type(self.guids) == "table" then
 		for k,v in pairs(self.guids) do
-			for ke,va in pairs(self.abilities) do	
+			for ke,va in pairs(self.abilities) do
 				local frame = getglobal(ke.."_"..k)
 				if frame then
 					frame = nil
 				end
 			end
-			self.guids[k] = nil
+			self.guids[k]=nil
 		end
 	end
 	
 	self.guids = {}
 	self.abilities = {}
-	for k,v in pairs(abilityIDs) do
+	for k,v in pairs(BuffLibabilityIDs) do
 		self.abilities[GetSpellInfo(k)]=v;
 	end
 	
@@ -385,26 +407,16 @@ function BuffLib:PLAYER_ENTERING_WORLD(...)
 	
 end
 
-local logDelay = 0.05
-
-local applyEvents = {
-	"SPELL_AURA_APPLIED",
-	"SPELL_AURA_REFRESH",
-	"SPELL_AURA_APPLIED_DOSE",
-	"SPELL_CAST_SUCCESS",
-}
-
-local removeEvents = {
-	"SPELL_AURA_REMOVE",
-	"SPELL_AURA_DISPEL",
-	"SPELL_AURA_STOLEN",
-}
-
+--[[
+	first: initialize DR with 1.0 (full duration), if timestamp older than 15 seconds, reset to 1.0
+	next: AFTER calculating spell duration, divide DR by 2 (0.5, 0.25, ...) IF a CC is applied
+	next: on REMOVE, set a timestamp as "DR timer"
+--]]
 function BuffLib:COMBAT_LOG_EVENT_UNFILTERED(...)
 	local timestamp, eventType, sourceGUID,sourceName,sourceFlags,destGUID,destName,destFlags,spellID,spellName,spellSchool,auraType = select ( 1 , ... );
 	
 	-- DR can be applied by all spells, therefore outside of self.abilities[name]
-	if eventType == "SPELL_AURA_APPLIED" or eventType == "SPELL_AURA_REFRESH" or eventType == "SPELL_AURA_REMOVED" then
+	if eventType == "SPELL_AURA_APPLIED" or eventType == "SPELL_AURA_REFRESH" or eventType == "SPELL_AURA_REMOVED" or (eventType == "SPELL_CAST_SUCCESS" and spellSchool == "0x1") then
 		self:InitDR(destGUID, spellID, eventType)
 	end
 	
@@ -447,18 +459,16 @@ function BuffLib:COMBAT_LOG_EVENT_UNFILTERED(...)
 		end	
 	end
 
-	-- timer of last update on this spell, this is to ensure that multiple combatlog events will not overwrite the current timer
-	-- for example CAST_SUCCESS and AURA_APPLIED fire at the SAME time (or virtually same time)
-	-- only do this for spells which can actually DR - anything else doesn't matter
+	--[[
+		timer of last update on this spell, this is to ensure that multiple combatlog events will not overwrite the current timer
+		for example CAST_SUCCESS and AURA_APPLIED fire at the SAME time (or virtually same time)
+		only do this for spells which can actually DR - anything else doesn't matter
+	--]]
 	if self.abilities[spellName] and DRLib:GetSpellCategory(spellID) then
 		if self.guids[destGUID] and self.guids[destGUID][spellName] and eventType ~= "SPELL_AURA_REMOVE" then
 			self.guids[destGUID][spellName].lastTime = GetTime() 
 			--log("setting lastTime")
 		end
-	end
-	
-	if eventType == "SPELL_AURA_REMOVED" then
-		self:HideFrames(destGUID, spellName, spellID)
 	end
 	
 end
@@ -492,20 +502,24 @@ function BuffLib:CHAT_MSG_ADDON(prefix, message, channel, sender)
 			TargetDebuffButton_Update()
 		end
 		
-		local Aura = ArenaLiveCore:GetHandler("Aura")
-		if guid == UnitGUID("target") then
-			Aura:OnEvent("UNIT_AURA", "target")
-		elseif guid == UnitGUID("focus") then	
-			Aura:OnEvent("UNIT_AURA", "focus")
-		elseif guid == UnitGUID("party1") then	
-			Aura:OnEvent("UNIT_AURA", "party1")
-		elseif guid == UnitGUID("party2") then	
-			Aura:OnEvent("UNIT_AURA", "party2")
-		elseif guid == UnitGUID("party3") then	
-			Aura:OnEvent("UNIT_AURA", "party3")
-		elseif guid == UnitGUID("party4") then	
-			Aura:OnEvent("UNIT_AURA", "party4")				
+		if FocusFrame and FocusFrame:IsVisible() and guid == UnitGUID("focus") then
+			FocusDebuffButton_Update()
 		end
+		
+		-- code below can only be used if these functions are made global
+		--[[if XPerl_Target and XPerl_Target:IsVisible() and guid == UnitGUID("target") then
+			XPerl_Targets_BuffUpdate(getglobal("XPerl_Target"))
+			XPerl_Target_DebuffUpdate(getglobal("XPerl_Target"))
+		end
+		if XPerl_Focus and XPerl_Focus:IsVisible() and guid == UnitGUID("focus") then
+			XPerl_Targets_BuffUpdate(getglobal("XPerl_Focus"))
+			XPerl_Target_DebuffUpdate(getglobal("XPerl_Focus"))
+		end
+		for i=1,GetNumPartyMembers() do
+			if guid == UnitGUID("party"..i) and XPerl_Target then
+				XPerl_Party_Buff_UpdateAll(getglobal("XPerl_party"..i))
+			end
+		end]]
 	end
 end
 
@@ -526,7 +540,6 @@ function BuffLib:UNIT_AURA(unitID, eventType)
 end
 
 function BuffLib:SendSync(message)
-	if not BuffLibDB.sync then return end
 	local inInstance, instanceType = IsInInstance()
 	if instanceType == "pvp" then
 		SendAddonMessage("BuffLib", message, "BATTLEGROUND")
@@ -535,11 +548,10 @@ function BuffLib:SendSync(message)
 	elseif instanceType == "arena" or instanceType == "party" then
 		SendAddonMessage("BuffLib", message, "PARTY")
 	elseif instanceType == "none" then
-		if UnitGUID("raid1") ~= "" then
-			SendAddonMessage("BuffLib", message, "RAID")
-		end	
 		if UnitGUID("party1") then
 			SendAddonMessage("BuffLib", message, "PARTY")
+		elseif UnitGUID("raid1") then
+			SendAddonMessage("BuffLib", message, "RAID")
 		end
 	end
 	
@@ -577,7 +589,7 @@ function UnitBuff(unitID, index, castable)
 		EBFrame = BuffLib.guids[UnitGUID(unitID)][name]
 	end
 	
-	
+	-- if duration can be seen by the player (provided by the server) return original duration and end function here
 	if timeLeft ~= nil or duration ~=nil then -- can see timer, perfect
 		if unitID ~= "player" then
 			isMine = true
@@ -585,22 +597,25 @@ function UnitBuff(unitID, index, castable)
 			isMine = false
 		end
 		return name, rank, icon, count, duration, timeLeft, isMine
-	end
-	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
+	end	
+	
+	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft ~= nil and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then -- can't see timer but someone in party/raid/bg can
+		--log(name.. " reading from snyc")
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.endTime then -- have to load timer from combatlog :(
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft == nil then -- have to load timer from combatlog :(
+		--log(name.. " reading from combatlog")
 		duration = EBFrame.endTime
 		timeLeft = EBFrame.endTime-(GetTime()-EBFrame.startTime)
 		isMine = false		
 	end
+
 	if timeLeft and timeLeft <= 0 then
 		timeLeft = nil
 		duration = nil
-		log(name.." resetting timeLeft "..unitID)
+		--log(name.." resetting timeLeft "..unitID)
 	end	
-	
 	return name, rank, icon, count, duration, timeLeft, isMine
 end
 
@@ -614,27 +629,31 @@ function UnitDebuff(unitID, index, castable)
 	end
 	
 	
-	if timeLeft ~= nil or duration ~=nil then
+	if timeLeft ~= nil or duration ~= nil then
 		if unitID ~= "player" then
 			isMine = true
 		else
 			isMine = false
 		end
-	end
+		return name, rank, icon, count, debuffType, duration, timeLeft, isMine
+	end	
 	
-	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
+	if timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft ~= nil and EBFrame.timeLeft-(GetTime()-EBFrame.getTime) > 0 then
+		--log(name.. " reading from snyc")
 		duration = EBFrame.duration
 		timeLeft = EBFrame.timeLeft-(GetTime()-EBFrame.getTime)
 		isMine = false
-	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.endTime then
+	elseif timeLeft == nil and EBFrame ~=nil and EBFrame.timeLeft == nil then
+		--log(name.. " reading from combatlog")
 		duration = EBFrame.endTime
 		timeLeft = EBFrame.endTime-(GetTime()-EBFrame.startTime)
 		isMine = false
 	end
+	
 	if timeLeft and timeLeft <= 0 then
 		timeLeft = nil
 		duration = nil
-		log(name.." resetting timeLeft "..unitID)
+		--log(name.." resetting timeLeft "..unitID)
 	end	
 	
 	return name, rank, icon, count, debuffType, duration, timeLeft, isMine

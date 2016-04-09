@@ -1,10 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 	
-	<!-- Overwrite default UnitBuff() and UnitDebuff() -->
-	<Script File="BuffLib.lua" />
-	
-	
 	<Include File="Fonts.xml" />
 	<Script File="localisation.lua" />
 	<Script File="localisationdeDE.lua" />
@@ -18,6 +14,9 @@
 	
 	<!-- Load SpellDB -->
 	<Script File="Spells.lua" />
+	
+	<!-- Overwrite default UnitBuff() and UnitDebuff() -->
+	<Script File="BuffLib.lua" />
 
 	<!-- Load Constants -->
 	<Script File="Constants.lua" />	

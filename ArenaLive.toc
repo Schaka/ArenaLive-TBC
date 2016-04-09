@@ -1,5 +1,5 @@
 ## Interface: 20400
-## Title: ArenaLive [Core]
+## Title: ArenaLive
 ## Notes: ArenaLive TBC
 ## Author: Vadrak, Schaka
 ## Version: 2.0
