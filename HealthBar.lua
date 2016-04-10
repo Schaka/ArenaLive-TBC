@@ -45,7 +45,16 @@ local function SetColour (self)
 		end
 	
 	elseif ( colourMode == "reaction" ) then
-		red, green, blue = UnitSelectionColor(unit);
+		local reaction = UnitReaction(unit, "player");
+		if ( reaction ) then
+			red = UnitReactionColor[reaction].r;
+			green = UnitReactionColor[reaction].g;
+			blue = UnitReactionColor[reaction].b;
+		else
+			red = 1
+			green = 1
+			blue = 1
+		end
 	elseif ( colourMode == "smooth" ) then
 		-- Luckily Blizzard has already written a perfect function for smooth health bar colour. I just adjust this to the addon's needs.
 		local value = UnitHealth(unit);

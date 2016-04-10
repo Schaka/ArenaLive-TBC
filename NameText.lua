@@ -96,10 +96,15 @@ local function SetColour (self)
 	
 	elseif ( colourMode == "reaction" or not isPlayer ) then
 		
-		if not UnitIsFriend("player", unit) then
-			red, green, blue = 1, 0, 0
+		local reaction = UnitReaction(unit, "player");
+		if ( reaction ) then
+			red = UnitReactionColor[reaction].r;
+			green = UnitReactionColor[reaction].g;
+			blue = UnitReactionColor[reaction].b;
 		else
-			red, green, blue = 0, 1, 0
+			red = 1
+			green = 1
+			blue = 1
 		end
 		
 		-- If the unit is a NPC that was tapped by another person, I reflect that in the name colour by colouring it grey.

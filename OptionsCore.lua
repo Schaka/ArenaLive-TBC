@@ -70,7 +70,7 @@ local dropDownMenuTypes = {
 				["value"] = "reaction",	
 				
 			},
-			[3] = {
+			[4] = {
 				["text"] = ArenaLiveCore:GetLocalisation("ArenaLiveCore", "DROPDOWN_OPTION_SMOOTH_HEALTHBAR"),
 				["value"] = "smooth",	
 				
