@@ -29,7 +29,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="TOPLEFT">
 						<Offset>
-							<AbsDimension x="100" y="-10" />
+							<AbsDimension x="145" y="-10" />
 						</Offset>
 					</Anchor>
 				</Anchors>
