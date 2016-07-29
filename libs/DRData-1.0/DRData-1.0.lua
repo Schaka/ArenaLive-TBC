@@ -24,9 +24,6 @@ Data.spells = {
 	
 	-- Gouge
 	[1776] = "disorient",
-		
-	-- Hex (Guessing)
-	[51514] = "disorient",
 
 	-- Polymorph
 	[118] = "disorient",
@@ -112,9 +109,6 @@ Data.spells = {
 	
 	-- Impact
 	[12355] = "rndstun",
-	
-	-- Gnaw (Ghoul)
-	[47481] = "ctrlstun",
 
 	--[[ RANDOM STUNS ]]--
 	-- Stoneclaw Stun
@@ -196,9 +190,6 @@ Data.spells = {
 	[44045] = "chastise",
 	[44046] = "chastise",
 	[44047] = "chastise",
-
-	-- Scatter Shot
-	[19503] = "scatters",
 	
 	-- Freezing Trap
 	[3355] = "freezetrap",
@@ -218,9 +209,6 @@ Data.spells = {
 	[47859] = "dc",
 	[47860] = "dc",
 
-	-- Kidney Shot
-	[8643] = "ks",
-	
 	-- Mind Control
 	[605] = "charm",
 	[10911] = "charm",

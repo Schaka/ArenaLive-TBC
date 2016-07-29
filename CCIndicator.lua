@@ -87,16 +87,16 @@ function CCIndicator:QueryAuras (unit)
 
 	-- Only query auras if we have a unit frame that shows this unit.
 	if ( UnitFrame.UnitIDTable[unit] ) then
-		local priority, spellName, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID
+		local priority, spellName, rank, icon, count, dispelType, duration, expires, isMine;
 		local matchSpellID, matchAura, matchType, matchDuration, matchExpires, matchTexture, matchPriority;
 		
 		-- Check Buffs first.
 		for i=1, MAX_BUFFS do
-			spellName, rank, icon, count, duration, expires = UnitBuff(unit, i);
+			spellName, rank, icon, count, duration, expires, isMine = UnitBuff(unit, i);
 			
 			if ( icon ) then					
 				
-				if ( locSpells[spellName] ) then
+				if ( locSpells[spellName] and expires ) then
 					-- Get the priority of the spell.
 					local dbKey =  "CCPriority/"..locSpells[spellName];
 					priority = ArenaLiveCore:GetDBEntry(addonName, dbKey);					
@@ -121,11 +121,11 @@ function CCIndicator:QueryAuras (unit)
 		
 		-- Then ceck Debuffs
 		for i=1, MAX_DEBUFFS do
-			spellName, rank, icon, count, dispelType, duration, expires, caster, isStealable, shouldConsolidate, spellID = UnitDebuff(unit, i);
+			spellName, rank, icon, count, dispelType, duration, expires, isMine = UnitDebuff(unit, i);
 			
 			if ( icon ) then
 						
-				if ( locSpells[spellName] ) then
+				if ( locSpells[spellName] and expires ) then
 					-- Get the priority of the spell.
 					local dbKey =  "CCPriority/"..locSpells[spellName];
 					priority = ArenaLiveCore:GetDBEntry(addonName, dbKey);							

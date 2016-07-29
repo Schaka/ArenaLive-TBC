@@ -65,7 +65,7 @@ local function Update (self)
 	local prefix = self.buffFrame:GetName();
 	local maxRowWidth = self:GetWidth();
 	local frame, frameName;	
-	local name, rank, icon, count, dispelType, duration, expires;
+	local name, rank, icon, count, dispelType, duration, expires, isMine;
 	
 	local maxShownBuffs = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/AuraFrame/MaxShownBuffs");
 	local maxShownDebuffs = ArenaLiveCore:GetDBEntry(self.unitFrame.addonName, self.unitFrame.frameType.."/AuraFrame/MaxShownDebuffs");
