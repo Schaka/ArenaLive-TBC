@@ -25,7 +25,7 @@
 					</Anchor>
 				</Anchors>
 			</CheckButton>
-			<CheckButton name="$parentReverseFillStatusBars" inherits="OptionsCheckButtonTemplate" checked="false">
+			<CheckButton name="$parentReverseFillStatusBars" inherits="OptionsCheckButtonTemplate" checked="false" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabledText" relativePoint="TOPRIGHT" >
 						<Offset>
@@ -38,26 +38,26 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="-15" y="-15" />
+							<AbsDimension x="-40" y="-15" />
 						</Offset>
 					</Anchor>
 				</Anchors>						
 			</Button>							
 			<EditBox name="$parentHealthBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
 				<Size>
-					<AbsDimension x="380" y="20" />
+					<AbsDimension x="200" y="20" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentHealthBarColour" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="125" y="-4" />
+							<AbsDimension x="115" y="-4" />
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</EditBox>
 			<EditBox name="$parentPowerBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
 				<Size>
-					<AbsDimension x="380" y="20" />
+					<AbsDimension x="200" y="20" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentHealthBarText" relativePoint="BOTTOMLEFT">
@@ -96,7 +96,7 @@
 							<Anchors>
 								<Anchor point="TOPLEFT">
 									<Offset>
-										<AbsDimension y="-10" />
+										<AbsDimension x="0" y="0" />
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -108,7 +108,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentAuraTitle" relativePoint="BOTTOMLEFT" >
 								<Offset>
-									<AbsDimension x="15" y="-15" />
+									<AbsDimension x="0" y="-15" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -117,7 +117,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentShowAurasText" relativePoint="TOPRIGHT" >
 								<Offset>
-									<AbsDimension x="0" y="6" />
+									<AbsDimension x="5" y="12" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -126,7 +126,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT"  relativeTo="$parentShowAuras" relativePoint="BOTTOMLEFT">
 								<Offset>
-									<AbsDimension y="-20" />
+									<AbsDimension x="-10" y="-15" />
 								</Offset>
 							</Anchor>
 						</Anchors>							
@@ -138,7 +138,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentAuraPosition" relativePoint="BOTTOMLEFT">
 								<Offset>
-									<AbsDimension x="35" y="-15" />
+									<AbsDimension x="15" y="-15" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -150,7 +150,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentNormalAuraIconSize" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="50" y="0" />
+									<AbsDimension x="15" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -162,7 +162,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentLargeAuraIconSize" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="50" y="0" />
+									<AbsDimension x="15" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -174,7 +174,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentMaxShownBuffs" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="50" y="0" />
+									<AbsDimension x="15" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
