@@ -25,7 +25,7 @@
 					</Anchor>
 				</Anchors>
 			</CheckButton>
-			<CheckButton name="$parentReverseFillStatusBars" inherits="OptionsCheckButtonTemplate" checked="false">
+			<CheckButton name="$parentReverseFillStatusBars" inherits="OptionsCheckButtonTemplate" checked="false" hidden="true">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabledText" relativePoint="TOPRIGHT" >
 						<Offset>
