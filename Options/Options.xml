@@ -9,7 +9,6 @@
 	<Include File="TargetOfFocusFrame.xml" />
 	<Include File="ArenaEnemyFrames.xml" />
 	<Include File="PartyFrames.xml" />
-	<!--<Include File="BossFrames.xml" />-->
 	<Include File="Profiles.xml" />
 	
 	<Frame name="ALUF_Options" hidden="true">

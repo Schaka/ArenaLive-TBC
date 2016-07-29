@@ -20,41 +20,41 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="15" y="-15" />
+							<AbsDimension x="-15" y="-10" />
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<CheckButton name="$parentGrowUpwards" inherits="OptionsCheckButtonTemplate" checked="false">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="TOPLEFT" >
+					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="TOPRIGHT" >
 						<Offset>
-							<AbsDimension x="50" y="6" />
+							<AbsDimension x="62" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<CheckButton name="$parentShowInRaid" inherits="OptionsCheckButtonTemplate" checked="false">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="BOTTOMLEFT" >
+					<Anchor point="TOPLEFT" relativeTo="$parentGrowUpwards" relativePoint="TOPRIGHT" >
 						<Offset>
-							<AbsDimension x="0" y="-6" />
+							<AbsDimension x="62" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<CheckButton name="$parentShowInArena" inherits="OptionsCheckButtonTemplate" checked="false">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentShowInRaidText" relativePoint="TOPRIGHT" >
+					<Anchor point="TOPLEFT" relativeTo="$parentShowInRaid" relativePoint="TOPRIGHT" >
 						<Offset>
-							<AbsDimension x="10" y="6" />
+							<AbsDimension x="62" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<Button name="$parentPortraitType" inherits="ArenaLive_OptionsDropDownMenuTemplate">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentShowInRaid" relativePoint="BOTTOMLEFT">
+					<Anchor point="TOPLEFT" relativeTo="$parentIsEnabled" relativePoint="BOTTOMLEFT">
 						<Offset>
 							<AbsDimension x="-15" y="-15" />
 						</Offset>
@@ -78,7 +78,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT"  relativeTo="$parentPortraitType" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="125" y="0" />
+							<AbsDimension x="90" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -100,7 +100,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT"  relativeTo="$parentIcon1" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="125" y="0" />
+							<AbsDimension x="90" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -142,7 +142,7 @@
 			</Button>							
 			<EditBox name="$parentHealthBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
 				<Size>
-					<AbsDimension x="380" y="20" />
+					<AbsDimension x="200" y="20" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentHealthBarColour" relativePoint="TOPRIGHT">
@@ -176,7 +176,7 @@
 			</Button>
 			<EditBox name="$parentPowerBarText" inherits="ArenaLive_OptionsEditBoxTemplate">
 				<Size>
-					<AbsDimension x="380" y="20" />
+					<AbsDimension x="200" y="20" />
 				</Size>
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentNameColour" relativePoint="TOPRIGHT">
@@ -210,7 +210,7 @@
 			</Button>
 			<CheckButton name="$parentShowTarget" inherits="OptionsCheckButtonTemplate" checked="false">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="$parentTargetPosition" relativePoint="TOPRIGHT" >
+					<Anchor point="TOPLEFT" relativeTo="$parentPetFramePosition" relativePoint="TOPRIGHT" >
 						<Offset>
 							<AbsDimension x="125" y="-2" />
 						</Offset>
@@ -219,9 +219,9 @@
 			</CheckButton>
 			<Button name="$parentPetFramePosition" inherits="ArenaLive_OptionsDropDownMenuTemplate">
 				<Anchors>
-					<Anchor point="TOPLEFT"  relativeTo="$parentShowTargetText" relativePoint="TOPRIGHT">
+					<Anchor point="TOPLEFT"  relativeTo="$parentTargetPosition" relativePoint="TOPRIGHT">
 						<Offset>
-							<AbsDimension x="-6" y="8" />
+							<AbsDimension x="100" y="0" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -243,7 +243,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentPetFramePosition" relativePoint="TOPRIGHT" >
 						<Offset>
-							<AbsDimension x="125" y="-2" />
+							<AbsDimension x="125" y="2" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -255,7 +255,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentTargetPosition" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="20" y="-15" />
+							<AbsDimension x="20" y="-12" />
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -289,7 +289,7 @@
 							<Anchors>
 								<Anchor point="TOPLEFT">
 									<Offset>
-										<AbsDimension x="-30" />
+										<AbsDimension x="5" y="-6" />
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -298,7 +298,7 @@
 							<Anchors>
 								<Anchor point="TOPLEFT">
 									<Offset>
-										<AbsDimension x="-30" y="-80" />
+										<AbsDimension x="5" y="-43" />
 									</Offset>
 								</Anchor>
 							</Anchors>
@@ -310,7 +310,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT"  relativeTo="$parentCastBarTitle" relativePoint="TOPLEFT">
 								<Offset>
-									<AbsDimension y="0" x="100" />
+									<AbsDimension y="5" x="50" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -332,7 +332,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentCastBarPosition" relativePoint="TOPRIGHT" >
 								<Offset>
-									<AbsDimension x="125" y="-2" />
+									<AbsDimension x="125" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -341,7 +341,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentAuraTitle" relativePoint="TOPRIGHT" >
 								<Offset>
-									<AbsDimension x="-20" y="-15" />
+									<AbsDimension x="20" y="12" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -351,9 +351,9 @@
 							<AbsDimension x="64" y="17" />
 						</Size>
 						<Anchors>
-							<Anchor point="TOPLEFT" relativeTo="$parentShowAuras" relativePoint="BOTTOMLEFT">
+							<Anchor point="TOPLEFT" relativeTo="$parentAuraTitle" relativePoint="BOTTOMLEFT">
 								<Offset>
-									<AbsDimension x="0" y="-15" />
+									<AbsDimension x="15" y="-15" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -365,7 +365,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentNormalAuraIconSize" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="30" y="0" />
+									<AbsDimension x="20" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -377,7 +377,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentLargeAuraIconSize" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="30" y="0" />
+									<AbsDimension x="20" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
@@ -389,7 +389,7 @@
 						<Anchors>
 							<Anchor point="TOPLEFT" relativeTo="$parentMaxShownBuffs" relativePoint="TOPRIGHT">
 								<Offset>
-									<AbsDimension x="30" y="0" />
+									<AbsDimension x="20" y="0" />
 								</Offset>
 							</Anchor>
 						</Anchors>
