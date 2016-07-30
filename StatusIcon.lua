@@ -23,11 +23,7 @@ StatusIcon:RegisterEvent("PLAYER_UPDATE_RESTING");
 
 -- *** FRAME FUNCTIONS ***
 local function OnUpdate (self, elapsed)
-
-	if ( self.frequentUpdates ) then
-		self:Update();
-	end
-
+	self:Update();
 end
 
 local function Update (self)
