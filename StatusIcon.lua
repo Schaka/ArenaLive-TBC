@@ -78,9 +78,14 @@ function StatusIcon:AddFrame (statusIcon, width, height, stackingDirection, unit
 	statusIcon.height = height;
 	statusIcon.stacking = stackingDirection;
 	
-	-- Set the basic functions for the castbar.
+	-- Set the basic functions for the StatusIcon.
 	statusIcon.Update = Update;
 	statusIcon.Reset = Reset;
+	statusIcon.OnUpdate = OnUpdate;
+	local updateFrame = CreateFrame("Frame", statusIcon:GetName().."UpdateFrame");
+	updateFrame:SetScript("OnUpdate", function(self, elapsed)
+		statusIcon:OnUpdate(statusIcon, elapsed);
+	end);
 
 end
 
