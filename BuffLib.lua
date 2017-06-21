@@ -476,6 +476,9 @@ end
 function BuffLib:CHAT_MSG_ADDON(prefix, message, channel, sender)
 	if prefix == "BuffLib" and sender ~= UnitName("player") then
 		local guid, name, duration, timeLeft = strsplit(",", message)
+		
+		if guid == UnitGUID("player") then return end
+		
 		--local EBFrame = getglobal(name.."_"..guid)
 		local EBFrame
 		if self.guids[guid] then
@@ -496,30 +499,26 @@ function BuffLib:CHAT_MSG_ADDON(prefix, message, channel, sender)
 			self.guids[guid][name].duration = tonumber(duration)
 			self.guids[guid][name].getTime = GetTime()
 		end
-		
-		--instant buff/debuff timer update for default UnitFrames
-		if TargetFrame:IsVisible() and guid == UnitGUID("target") then
-			TargetDebuffButton_Update()
-		end
-		
-		if FocusFrame and FocusFrame:IsVisible() and guid == UnitGUID("focus") then
-			FocusDebuffButton_Update()
-		end
-		
-		-- code below can only be used if these functions are made global
-		--[[if XPerl_Target and XPerl_Target:IsVisible() and guid == UnitGUID("target") then
-			XPerl_Targets_BuffUpdate(getglobal("XPerl_Target"))
-			XPerl_Target_DebuffUpdate(getglobal("XPerl_Target"))
-		end
-		if XPerl_Focus and XPerl_Focus:IsVisible() and guid == UnitGUID("focus") then
-			XPerl_Targets_BuffUpdate(getglobal("XPerl_Focus"))
-			XPerl_Target_DebuffUpdate(getglobal("XPerl_Focus"))
-		end
-		for i=1,GetNumPartyMembers() do
-			if guid == UnitGUID("party"..i) and XPerl_Target then
-				XPerl_Party_Buff_UpdateAll(getglobal("XPerl_party"..i))
+
+		local units = {
+			["target"] = true,
+			["focus"] = true,
+			["pet"] = true,
+			["party1"] = true,
+			["party2"] = true,
+			["party3"] = true,
+			["party4"] = true,
+		}
+
+		for unit,v in pairs(units) do
+			if(UnitGUID(unit) == guid) then
+				local aura = ArenaLiveCore:GetHandler("Aura");
+				local indicator = ArenaLiveCore:GetHandler("CCIndicator");
+				aura:OnEvent("UNIT_AURA", unit);
+				indicator:OnEvent("UNIT_AURA", unit);
 			end
-		end]]
+		end
+		
 	end
 end
 
